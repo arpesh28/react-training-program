@@ -1,0 +1,38 @@
+.main-wrapper {
+  margin-top: 2rem;
+}
+.todo-form input {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #cacaca;
+}
+.color-red {
+  color: red;
+}
+.list-delete {
+  width: 20px;
+}
+.hover {
+  cursor: pointer;
+}
+.todo-form button {
+  margin-left: 20px;
+  padding: 10px 30px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: #4e91ff;
+  width: 20rem;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+li {
+  padding: 15px 20px;
+  background: #d7e6ff;
+  border-radius: 10px;
+  margin: 10px 0;
+}
