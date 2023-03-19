@@ -1,0 +1,13 @@
+.story-card {
+  background-color: #e7e9ff;
+  padding: 10px 20px;
+}
+.story-card img {
+  width: 100%;
+}
+.hover {
+  cursor: pointer;
+}
+.error {
+  color: red;
+}

@@ -6,7 +6,7 @@ import axios from "axios";
 
 export default function MovieDetails() {
   const { state } = useLocation();
-
+  console.log("location:", useLocation());
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +16,6 @@ export default function MovieDetails() {
       method: "get",
       url: `https://api.themoviedb.org/3/movie/${state.id}?api_key=c84e3d4a9b983db2f509861514607f6f`,
     }).then((response) => {
-      console.log("response:", response);
       setMovie(response.data);
       setLoading(false);
     });
