@@ -13,9 +13,9 @@ export default function StoryCard({ story }) {
   const image = story.attributes?.image?.data?.attributes?.formats?.small?.url;
   return (
     <>
-      <div className="col-3">
+      <div className="col-3 story-card-wrapper">
         <img
-          className="w-100"
+          className="w-100 story-card-img"
           src={`${process.env.REACT_APP_IMAGE_URL}${image}`}
           alt=""
         />
@@ -26,7 +26,7 @@ export default function StoryCard({ story }) {
           }}
         >
           <h4>{story.attributes?.title}</h4>
-          <p>{story.attributes?.description}</p>
+          <p className="ellipsis-7">{story.attributes?.description}</p>
           <button
             className="btn btn-danger"
             onClick={(e) => {
