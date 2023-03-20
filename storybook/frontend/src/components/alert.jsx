@@ -1,7 +1,12 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
-export default function Alert({ showModal, toggleModal }) {
+export default function Alert({
+  showModal,
+  toggleModal,
+  handleDelete,
+  loading,
+}) {
   return (
     <Modal className="modal fade" show={showModal} onHide={toggleModal}>
       <Modal.Header closeButton>
@@ -11,7 +16,9 @@ export default function Alert({ showModal, toggleModal }) {
         <p>Are you sure you want to delete this blog?</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger">Delete</Button>
+        <Button variant="danger" onClick={handleDelete} disabled={loading}>
+          {loading ? "Loading..." : "Delete"}
+        </Button>
         <Button variant="secondary" onClick={toggleModal}>
           Cancel
         </Button>

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 //  Components
 
 export default function AddStory() {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   // States
   const [data, setData] = useState({
@@ -17,7 +18,19 @@ export default function AddStory() {
   const [loadingImage, setLoadingImage] = useState(false);
   const [errors, setErrors] = useState({});
 
-  // newErrors = { title:'Title is required'}
+  useEffect(() => {
+    if (state) {
+      const storyDetails = state.story?.attributes;
+      const newData = structuredClone(data);
+      newData.title = storyDetails.title;
+      newData.description = storyDetails.description;
+      newData.image = {
+        ...storyDetails.image?.data?.attributes,
+        id: storyDetails.image?.data?.id,
+      };
+      setData(newData);
+    }
+  }, []);
 
   const uploadImage = (e) => {
     setLoadingImage(true);
@@ -64,22 +77,32 @@ export default function AddStory() {
           image: data.image.id,
         },
       };
-      axios({
-        method: "post",
-        url: `${process.env.REACT_APP_API_URL}stories`,
-        data: payLoad,
-      }).then((response) => {
-        navigate("/");
-      });
+      if (state) {
+        axios({
+          method: "put",
+          url: `${process.env.REACT_APP_API_URL}stories/${state?.story?.id}`,
+          data: payLoad,
+        }).then((response) => {
+          navigate("/");
+        });
+      } else {
+        axios({
+          method: "post",
+          url: `${process.env.REACT_APP_API_URL}stories`,
+          data: payLoad,
+        }).then((response) => {
+          navigate("/");
+        });
+      }
     } else {
       return setErrors(newErrors);
     }
   };
-
+  console.log("state:", state);
   return (
     <div className="container my-4">
       <div className="d-flex justify-content-between">
-        <h2>Add Stories</h2>
+        <h2>{state ? "Edit" : "Add"} Stories</h2>
       </div>
       <div className=" mt-5">
         <div className="form-group my-3">
@@ -90,6 +113,8 @@ export default function AddStory() {
             placeholder="Add a title here"
             name="title"
             onChange={onChange}
+            className="w-100"
+            value={data.title}
           />
           {errors?.title && <div className="error">{errors.title}</div>}
         </div>
@@ -100,6 +125,9 @@ export default function AddStory() {
             placeholder="Type your story here"
             name="description"
             onChange={onChange}
+            className="w-100"
+            style={{ height: 300 }}
+            value={data.description}
           />
           {errors?.description && (
             <div className="error">{errors.description}</div>
@@ -132,7 +160,7 @@ export default function AddStory() {
         onClick={handleSubmit}
         disabled={loadingImage}
       >
-        Add Story
+        {state ? "Edit" : "Add"} Story
       </button>
     </div>
   );

@@ -32,3 +32,23 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.custom-dropdown {
+  top: 15px;
+  right: 20px;
+}
+.onboarding-wrapper {
+  height: 100vh;
+}
+.onboarding-inputs input {
+  padding: 10px 8px;
+  color: #787878;
+  border: 1px solid #061438;
+  border-radius: 10px;
+}
+.form-group img {
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+}
