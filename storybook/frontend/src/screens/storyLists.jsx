@@ -38,15 +38,29 @@ export default function StoryLists() {
     <div className="container my-4">
       <div className="d-flex justify-content-between">
         <h2>All Stories</h2>
-        <button
-          className="btn btn-primary"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/add-story");
-          }}
-        >
-          Add Story
-        </button>
+        <div>
+          {localStorage.getItem("jwt") ? (
+            <button
+              className="btn btn-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/add-story");
+              }}
+            >
+              Add Story
+            </button>
+          ) : (
+            <button
+              className="btn btn-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/login");
+              }}
+            >
+              Login
+            </button>
+          )}{" "}
+        </div>
       </div>
       <div className="row mt-5 gy-5">
         {stories.map((story, index) => (

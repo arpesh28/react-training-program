@@ -40,34 +40,36 @@ export default function StoryCard({ story, deleteStoryFromState }) {
           src={`${process.env.REACT_APP_IMAGE_URL}${image}`}
           alt=""
         />
-        <Dropdown className="position-absolute custom-dropdown">
-          <Dropdown.Toggle
-            variant="primary"
-            id="dropdown-basic"
-          ></Dropdown.Toggle>
+        {localStorage.getItem("jwt") && (
+          <Dropdown className="position-absolute custom-dropdown">
+            <Dropdown.Toggle
+              variant="primary"
+              id="dropdown-basic"
+            ></Dropdown.Toggle>
 
-          <Dropdown.Menu>
-            <Dropdown.Item
-              href="#/action-1"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate("/add-story", { state: { story } });
-              }}
-            >
-              Edit
-            </Dropdown.Item>{" "}
-            <Dropdown.Item
-              href="#/action-1"
-              style={{ color: "red" }}
-              onClick={(e) => {
-                e.preventDefault();
-                setAlert(true);
-              }}
-            >
-              Delete
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+            <Dropdown.Menu>
+              <Dropdown.Item
+                href="#/action-1"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/add-story", { state: { story } });
+                }}
+              >
+                Edit
+              </Dropdown.Item>{" "}
+              <Dropdown.Item
+                href="#/action-1"
+                style={{ color: "red" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setAlert(true);
+                }}
+              >
+                Delete
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        )}
         <div
           className="story-card hover"
           onClick={(e) => {

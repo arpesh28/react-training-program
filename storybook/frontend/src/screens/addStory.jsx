@@ -40,6 +40,7 @@ export default function AddStory() {
       method: "post",
       url: `${process.env.REACT_APP_API_URL}upload`,
       data: formData,
+      headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
     }).then((response) => {
       const newData = structuredClone(data);
       const newErrors = structuredClone(errors);
@@ -90,6 +91,7 @@ export default function AddStory() {
           method: "post",
           url: `${process.env.REACT_APP_API_URL}stories`,
           data: payLoad,
+          headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
         }).then((response) => {
           navigate("/");
         });
@@ -98,7 +100,11 @@ export default function AddStory() {
       return setErrors(newErrors);
     }
   };
-  console.log("state:", state);
+  if (!localStorage.getItem("jwt")) {
+    window.location.href = "/login";
+    return null;
+  }
+
   return (
     <div className="container my-4">
       <div className="d-flex justify-content-between">
