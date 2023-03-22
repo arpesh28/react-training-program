@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 //  Images
 import viewIcon from "../include/images/view.png";
@@ -50,14 +51,10 @@ export default function Login() {
         navigate("/");
       })
       .catch((err) => {
-        const newErrors = structuredClone(errors);
-        newErrors.apiErr = err?.response?.data?.error?.message;
-        setErrors(newErrors);
+        toast.error(err?.response?.data?.error?.message);
         setLoading(false);
       });
   };
-
-  console.log("state errors:", errors);
 
   return (
     <div className="container d-flex w-100 onboarding-wrapper align-items-center justify-content-center">
@@ -98,7 +95,11 @@ export default function Login() {
         </div>
         {errors?.password && <div className="error">Password is required</div>}
         {errors?.apiErr && <div className="error">{errors.apiErr}</div>}
-        <button className="btn btn-primary" onClick={handleSubmit}>
+        <button
+          className="btn btn-primary"
+          onClick={handleSubmit}
+          disabled={loading}
+        >
           {loading ? "Loading..." : "Login"}
         </button>
         <div>

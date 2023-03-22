@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Select from "react-select";
 
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -14,7 +15,9 @@ export default function AddStory() {
     title: "",
     description: "",
     image: null,
+    category: [],
   });
+  const [allCategories, setAllCategories] = useState([]);
   const [loadingImage, setLoadingImage] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -30,6 +33,12 @@ export default function AddStory() {
       };
       setData(newData);
     }
+    axios({
+      method: "get",
+      url: `${process.env.REACT_APP_API_URL}categories`,
+    }).then((response) => {
+      setAllCategories(response.data.data);
+    });
   }, []);
 
   const uploadImage = (e) => {
@@ -69,19 +78,27 @@ export default function AddStory() {
       newErrors.title = "Title must be of length 3";
     if (!data.description) newErrors.description = "Description is required.";
     if (!data.image) newErrors.image = "Image is required.";
+    if (data.category.length == 0) newErrors.category = "Category is required";
 
-    if (!newErrors.image && !newErrors.title && !newErrors.description) {
+    if (
+      !newErrors.image &&
+      !newErrors.title &&
+      !newErrors.description &&
+      !newErrors.category
+    ) {
       const payLoad = {
         data: {
           title: data.title,
           description: data.description,
           image: data.image.id,
+          categories: data.category.map((cat) => cat.value),
         },
       };
       if (state) {
         axios({
           method: "put",
           url: `${process.env.REACT_APP_API_URL}stories/${state?.story?.id}`,
+          headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
           data: payLoad,
         }).then((response) => {
           navigate("/");
@@ -104,7 +121,6 @@ export default function AddStory() {
     window.location.href = "/login";
     return null;
   }
-
   return (
     <div className="container my-4">
       <div className="d-flex justify-content-between">
@@ -138,6 +154,27 @@ export default function AddStory() {
           {errors?.description && (
             <div className="error">{errors.description}</div>
           )}
+        </div>
+        <div className="form-group">
+          <label htmlFor="">Category</label>
+          <br />
+          <Select
+            isMulti
+            name="colors"
+            options={allCategories.map((cat) => ({
+              value: cat.id,
+              label: cat.attributes.name,
+            }))}
+            className="basic-multi-select"
+            classNamePrefix="select"
+            onChange={(e) => {
+              setData({ ...data, category: e });
+              const newErrors = structuredClone(errors);
+              delete newErrors.category;
+              setErrors(newErrors);
+            }}
+          />
+          {errors?.category && <div className="error">{errors.category}</div>}
         </div>
         <div className="form-group my-3">
           <label htmlFor="">Image</label>

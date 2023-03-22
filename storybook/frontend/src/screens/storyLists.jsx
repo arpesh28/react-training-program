@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 
 //  Components
 import StoryCard from "../components/storyCard";
@@ -60,6 +62,14 @@ export default function StoryLists() {
               Login
             </button>
           )}{" "}
+          <FontAwesomeIcon
+            icon={faPowerOff}
+            className="ml-3 hover"
+            onClick={(e) => {
+              localStorage.clear();
+              navigate("/login");
+            }}
+          />
         </div>
       </div>
       <div className="row mt-5 gy-5">

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Alert from "./alert";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import { Dropdown } from "react-bootstrap";
 
@@ -21,15 +22,20 @@ export default function StoryCard({ story, deleteStoryFromState }) {
     axios({
       method: "delete",
       url: `${process.env.REACT_APP_API_URL}stories/${story?.id}`,
-    }).then((response) => {
-      console.log("response:", response);
-      // setStories(response.data.data);
-      setLoadingDelete(false);
-      setAlert(false);
-      if (response.status === 200) {
-        deleteStoryFromState(story.id);
-      }
-    });
+      headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
+    })
+      .then((response) => {
+        setLoadingDelete(false);
+        setAlert(false);
+        if (response.status === 200) {
+          deleteStoryFromState(story.id);
+        }
+      })
+      .catch((err) => {
+        toast.error(err.response.data.error.message);
+        setAlert(false);
+        setLoadingDelete(false);
+      });
   };
 
   return (
@@ -77,6 +83,11 @@ export default function StoryCard({ story, deleteStoryFromState }) {
           }}
         >
           <h4>{story.attributes?.title}</h4>
+          <div className="categories mb-3">
+            {story.attributes?.categories?.data?.map((cat) => (
+              <span>{cat.attributes?.name}</span>
+            ))}
+          </div>
           <p className="ellipsis-7">{story.attributes?.description}</p>
         </div>
       </div>
