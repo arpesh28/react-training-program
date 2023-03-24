@@ -8,6 +8,8 @@ export default function EditProfile() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [loadingImage, setLoadingImage] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [usernameChanged, setUsernameChanged] = useState(false);
 
   const uploadImage = (e) => {
     setLoadingImage(true);
@@ -21,18 +23,26 @@ export default function EditProfile() {
     }).then((response) => {
       setLoadingImage(false);
       const newUser = structuredClone(user);
+      const newErrors = structuredClone(errors);
       newUser.profilePicture = response.data[0];
+      delete newErrors.profilePicture;
+      setErrors(newErrors);
       setUser(newUser);
     });
   };
   const handleSubmit = (e) => {
+    const newErrors = structuredClone(errors);
+    if (!user?.profilePicture)
+      newErrors.profilePicture = "Profile Picture is required";
+    if (!user?.username) newErrors.username = "Username is required";
+    if (newErrors.username || newErrors.profilePicture)
+      return setErrors(newErrors);
+
     setLoading(true);
     const payLoad = {
-      data: {
-        profilePicture: user?.profilePicture?.id,
-      },
+      profilePicture: user?.profilePicture?.id,
     };
-    console.log("called:");
+    if (usernameChanged) payLoad.username = user?.username;
     axios({
       method: "PUT",
       url: `${process.env.REACT_APP_API_URL}users/14`,
@@ -44,6 +54,7 @@ export default function EditProfile() {
         navigate("/profile");
       })
       .catch((err) => {
+        setLoading(false);
         console.log("err:", err);
       });
   };
@@ -53,9 +64,28 @@ export default function EditProfile() {
       <Header page={"Edit Profile"} />
       <div className=" mt-5">
         <div className="form-group my-3">
+          <label htmlFor="">Username</label>
+          <br />
+          <input
+            type="text"
+            value={user?.username}
+            onChange={(e) => {
+              setUser({ ...user, username: e.target.value });
+              setUsernameChanged(true);
+              const newErrors = structuredClone(errors);
+              delete newErrors.username;
+              setErrors(newErrors);
+            }}
+          />
+          {errors?.username && <div className="error">{errors.username}</div>}
+        </div>
+        <div className="form-group my-3">
           <label htmlFor="">Profile Picture</label>
           <br />
           <input type="file" onChange={uploadImage} />
+          {errors?.profilePicture && (
+            <div className="error">{errors.profilePicture}</div>
+          )}
         </div>
         <div className="image-preview">
           <img
@@ -69,7 +99,7 @@ export default function EditProfile() {
         onClick={handleSubmit}
         disabled={loadingImage || loading}
       >
-        Edit Image
+        Edit Profile
       </button>
     </div>
   );

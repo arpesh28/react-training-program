@@ -75,3 +75,7 @@
 .image-preview img {
   width: 400px;
 }
+.empty-data {
+  font-size: 30px;
+  text-align: center;
+}

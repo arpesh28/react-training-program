@@ -83,7 +83,9 @@ export default function StoryCard({ story, deleteStoryFromState }) {
             navigate(`/story/${story?.id}`);
           }}
         >
-          <span>By {author?.attributes?.username}</span>
+          <div className="author">
+            <span>By {author?.attributes?.username}</span>
+          </div>
           <h4>{story.attributes?.title}</h4>
           <div className="categories mb-3">
             {story.attributes?.categories?.data?.map((cat) => (
