@@ -58,3 +58,20 @@
   right: 18px;
   transform: translateY(-50%);
 }
+.header nav {
+  width: 400px;
+}
+.nav-wrapper a {
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  color: black;
+}
+.user-details img {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.image-preview img {
+  width: 400px;
+}

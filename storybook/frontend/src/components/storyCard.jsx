@@ -37,7 +37,7 @@ export default function StoryCard({ story, deleteStoryFromState }) {
         setLoadingDelete(false);
       });
   };
-
+  const author = story?.attributes?.author?.data;
   return (
     <>
       <div className="col-3 story-card-wrapper position-relative">
@@ -46,42 +46,44 @@ export default function StoryCard({ story, deleteStoryFromState }) {
           src={`${process.env.REACT_APP_IMAGE_URL}${image}`}
           alt=""
         />
-        {localStorage.getItem("jwt") && (
-          <Dropdown className="position-absolute custom-dropdown">
-            <Dropdown.Toggle
-              variant="primary"
-              id="dropdown-basic"
-            ></Dropdown.Toggle>
+        {localStorage.getItem("jwt") &&
+          author?.id == JSON.parse(localStorage.getItem("user")).id && (
+            <Dropdown className="position-absolute custom-dropdown">
+              <Dropdown.Toggle
+                variant="primary"
+                id="dropdown-basic"
+              ></Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <Dropdown.Item
-                href="#/action-1"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/add-story", { state: { story } });
-                }}
-              >
-                Edit
-              </Dropdown.Item>{" "}
-              <Dropdown.Item
-                href="#/action-1"
-                style={{ color: "red" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setAlert(true);
-                }}
-              >
-                Delete
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        )}
+              <Dropdown.Menu>
+                <Dropdown.Item
+                  href="#/action-1"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/add-story", { state: { story } });
+                  }}
+                >
+                  Edit
+                </Dropdown.Item>{" "}
+                <Dropdown.Item
+                  href="#/action-1"
+                  style={{ color: "red" }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setAlert(true);
+                  }}
+                >
+                  Delete
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          )}
         <div
           className="story-card hover"
           onClick={(e) => {
             navigate(`/story/${story?.id}`);
           }}
         >
+          <span>By {author?.attributes?.username}</span>
           <h4>{story.attributes?.title}</h4>
           <div className="categories mb-3">
             {story.attributes?.categories?.data?.map((cat) => (

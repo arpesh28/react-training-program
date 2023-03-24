@@ -3,10 +3,8 @@ import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 
 //  Images
-import dummyImage from "../include/images/dummy.jpg";
 
 //  Components
-import StoryCard from "../components/storyCard";
 
 export default function StoryDetails() {
   const { id } = useParams();

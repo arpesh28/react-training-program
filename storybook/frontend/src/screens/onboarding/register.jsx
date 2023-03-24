@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import viewIcon from "../include/images/view.png";
-import hideIcon from "../include/images/hide.png";
+import viewIcon from "../../include/images/view.png";
+import hideIcon from "../../include/images/hide.png";
 
 export default function Login() {
   const navigate = useNavigate();

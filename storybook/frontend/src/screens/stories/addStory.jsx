@@ -5,6 +5,7 @@ import Select from "react-select";
 import { useNavigate, useLocation } from "react-router-dom";
 
 //  Components
+import Header from "../../components/header";
 
 export default function AddStory() {
   const navigate = useNavigate();
@@ -123,9 +124,7 @@ export default function AddStory() {
   }
   return (
     <div className="container my-4">
-      <div className="d-flex justify-content-between">
-        <h2>{state ? "Edit" : "Add"} Stories</h2>
-      </div>
+      <Header page={`${state ? "Edit" : "Add"} Stories`} />
       <div className=" mt-5">
         <div className="form-group my-3">
           <label htmlFor="">Title</label>
