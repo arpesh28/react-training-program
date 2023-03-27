@@ -9,26 +9,29 @@ import userIcon from "../../include/images/userIcon.jpg";
 import Header from "../../components/header";
 import StoryCard from "../../components/storyCard";
 
+//  Redux
+import { useSelector } from "react-redux";
+
 export default function MyProfile() {
   const navigate = useNavigate();
-  const [myData, setMyData] = useState(
-    JSON.parse(localStorage.getItem("user"))
-  );
+  const myData = useSelector((state) => state.user.userDetails);
+  const userLoading = useSelector((state) => state.user.loading);
+  // const [myData, setMyData] = useState(
+  //   JSON.parse(localStorage.getItem("user"))
+  // );
   const [myStories, setMyStories] = useState([]);
 
   useEffect(() => {
-    axios({
-      method: "get",
-      url: `${
-        process.env.REACT_APP_API_URL
-      }stories?populate=*&filters[author]=${
-        JSON.parse(localStorage.getItem("user")).id
-      }`,
-      headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-    }).then((response) => {
-      setMyStories(response.data.data);
-    });
-  }, []);
+    if (!userLoading) {
+      axios({
+        method: "get",
+        url: `${process.env.REACT_APP_API_URL}stories?populate=*&filters[author]=${myData?.id}`,
+        headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
+      }).then((response) => {
+        setMyStories(response.data.data);
+      });
+    }
+  }, [userLoading]);
 
   const deleteStoryFromState = (id) => {
     const newStories = structuredClone(myStories);

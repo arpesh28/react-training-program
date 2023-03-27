@@ -8,10 +8,16 @@ import LoadingBar from "react-top-loading-bar";
 import StoryCard from "../../components/storyCard";
 import Header from "../../components/header";
 
+//  Redux
+import { useDispatch, useSelector } from "react-redux";
+import { getStories, deleteStory } from "../../store/stories";
+
 export default function StoryLists() {
+  const dispatch = useDispatch();
   const ref = useRef(null);
   // States
-  const [stories, setStories] = useState([]);
+  // const [stories, setStories] = useState([]);
+  const stories = useSelector((state) => state.stories.storyList) ?? [];
   const [loading, setLoading] = useState(true);
   const [allCategories, setAllCategories] = useState([]);
   const [allAuthors, setAllAuthors] = useState([]);
@@ -49,7 +55,8 @@ export default function StoryLists() {
       params,
     })
       .then((response) => {
-        setStories(response.data.data);
+        dispatch(getStories(response.data.data));
+        // setStories(response.data.data);
         setLoading(false);
         ref.current.complete();
       })
@@ -60,15 +67,8 @@ export default function StoryLists() {
   };
 
   const deleteStoryFromState = (id) => {
-    const newStories = structuredClone(stories);
-    let deleteInd = "";
-    newStories.forEach((item, index) => {
-      if (item.id === id) deleteInd = index;
-    });
-    newStories.splice(deleteInd, 1);
-    setStories(newStories);
+    dispatch(deleteStory(id));
   };
-  console.log("filters:", filters);
   return (
     <div className="container my-4">
       <LoadingBar height={5} color="#f11946" ref={ref} />
@@ -127,7 +127,7 @@ export default function StoryLists() {
             </button>
           </div>
         </div>
-        {stories.length === 0 ? (
+        {stories?.length === 0 ? (
           <div className="empty-data">
             {loading ? "Loading..." : "No results found"}
           </div>

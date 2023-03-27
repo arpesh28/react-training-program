@@ -3,9 +3,13 @@ import axios from "axios";
 import Header from "../../components/header";
 import { useNavigate } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 export default function EditProfile() {
   const navigate = useNavigate();
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [user, setUser] = useState(
+    useSelector((state) => state.user.userDetails)
+  );
   const [loadingImage, setLoadingImage] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});

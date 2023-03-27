@@ -4,15 +4,30 @@ import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+//  Redux
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, setLoading } from "../store/user";
+
 export default function Header({ page }) {
+  const dispatch = useDispatch();
+  const userDetails = useSelector((state) => state.user.userDetails);
   useEffect(() => {
+    dispatch(setLoading(true));
     axios({
       method: "get",
       url: `${process.env.REACT_APP_API_URL}users/me?populate=*`,
       headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-    }).then((response) => {
-      localStorage.setItem("user", JSON.stringify(response.data));
-    });
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(getUser(response.data));
+          dispatch(setLoading(false));
+        }
+      })
+      .catch((err) => {
+        console.log("error:", err);
+        dispatch(setLoading(false));
+      });
   }, []);
 
   const navigate = useNavigate();
