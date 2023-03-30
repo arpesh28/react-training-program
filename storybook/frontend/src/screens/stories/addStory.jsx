@@ -7,7 +7,22 @@ import { useNavigate, useLocation } from "react-router-dom";
 //  Components
 import Header from "../../components/header";
 
-export default function AddStory() {
+//  Redux
+import { connect } from "react-redux";
+import {
+  loadCategories,
+  addImage,
+  addStory,
+  updateStory,
+} from "../../store/stories";
+
+function AddStory({
+  loadCategories,
+  showStories,
+  addImage,
+  addStory,
+  updateStory,
+}) {
   const navigate = useNavigate();
   const { state } = useLocation();
 
@@ -18,7 +33,7 @@ export default function AddStory() {
     image: null,
     category: [],
   });
-  const [allCategories, setAllCategories] = useState([]);
+  const { allCategories } = showStories;
   const [loadingImage, setLoadingImage] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -34,27 +49,17 @@ export default function AddStory() {
       };
       setData(newData);
     }
-    axios({
-      method: "get",
-      url: `${process.env.REACT_APP_API_URL}categories`,
-    }).then((response) => {
-      setAllCategories(response.data.data);
-    });
+    loadCategories(() => {});
   }, []);
 
   const uploadImage = (e) => {
     setLoadingImage(true);
     const formData = new FormData();
     formData.append("files", e.target.files[0]);
-    axios({
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}upload`,
-      data: formData,
-      headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-    }).then((response) => {
+    addImage(formData, (res) => {
       const newData = structuredClone(data);
       const newErrors = structuredClone(errors);
-      newData.image = response.data[0];
+      newData.image = res.data[0];
       delete newErrors.image;
       setErrors(newErrors);
       setData(newData);
@@ -96,21 +101,11 @@ export default function AddStory() {
         },
       };
       if (state) {
-        axios({
-          method: "put",
-          url: `${process.env.REACT_APP_API_URL}stories/${state?.story?.id}`,
-          headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-          data: payLoad,
-        }).then((response) => {
+        updateStory(payLoad, state?.story?.id, () => {
           navigate("/");
         });
       } else {
-        axios({
-          method: "post",
-          url: `${process.env.REACT_APP_API_URL}stories`,
-          data: payLoad,
-          headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-        }).then((response) => {
+        addStory(payLoad, (res) => {
           navigate("/");
         });
       }
@@ -207,3 +202,21 @@ export default function AddStory() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    showStories: state.stories,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadCategories: (callback) => dispatch(loadCategories(callback)),
+    addImage: (data, callback) => dispatch(addImage(data, callback)),
+    addStory: (data, callback) => dispatch(addStory(data, callback)),
+    updateStory: (data, id, callback) =>
+      dispatch(updateStory(data, id, callback)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddStory);

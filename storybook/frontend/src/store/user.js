@@ -54,6 +54,21 @@ export const loadAuthors = (callback) => async (dispatch) => {
   }
 };
 
+export const updateUser = (data, id, callback) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      `${process.env.REACT_APP_API_URL}users/${id}`,
+      data,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+
 export const { getUser, setLoading, getAuthors } = userSlice.actions;
 
 export default userSlice.reducer;

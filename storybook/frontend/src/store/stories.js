@@ -43,7 +43,6 @@ export const loadStories = (params, callback) => async (dispatch) => {
     console.error("error:", err);
   }
 };
-
 export const loadCategories = (callback) => async (dispatch) => {
   try {
     const res = await axios.get(`${process.env.REACT_APP_API_URL}categories`);
@@ -51,6 +50,48 @@ export const loadCategories = (callback) => async (dispatch) => {
     callback();
   } catch (err) {
     callback();
+  }
+};
+export const addImage = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}upload`,
+      data,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+export const addStory = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}stories`,
+      data,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+export const updateStory = (data, id, callback) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      `${process.env.REACT_APP_API_URL}stories/${id}`,
+      data,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
   }
 };
 

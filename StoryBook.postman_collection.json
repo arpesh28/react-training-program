@@ -1,0 +1,1751 @@
+{
+	"info": {
+		"_postman_id": "34a381da-b061-4139-8f82-8e8d32c40e7b",
+		"name": "StoryBook",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"email\": \"arpesh+1@gmail.com\",\n        \"username\": \"arpesh1\",\n        \"password\": \"arpesh123\"\n      }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/auth/local/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"auth",
+								"local",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"email\": \"arpesh@gmail.com\",\n        \"username\": \"arpesh\",\n        \"password\": \"arpesh123\"\n      }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1337/api/auth/local/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"auth",
+										"local",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1679208501"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "340"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 06:47:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjc5MjA4NDQxLCJleHAiOjE2ODE4MDA0NDF9.eVE8BPI_-6SVZ8CvqjGantOBhuYC1o_vfDytKYb545I\",\n    \"user\": {\n        \"id\": 3,\n        \"username\": \"arpesh\",\n        \"email\": \"arpesh@gmail.com\",\n        \"provider\": \"local\",\n        \"confirmed\": true,\n        \"blocked\": false,\n        \"createdAt\": \"2023-03-19T06:47:21.008Z\",\n        \"updatedAt\": \"2023-03-19T06:47:21.008Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"identifier\": \"arpesh@gmail.com\",\n        \"password\": \"arpesh123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/auth/local/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"auth",
+								"local",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"identifier\": \"arpesh@gmail.com\",\n        \"password\": \"arpesh123\"\n      }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1337/api/auth/local/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"auth",
+										"local",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "10"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "9"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1679202656"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "340"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 05:09:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"jwt\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc5MjAyNTk1LCJleHAiOjE2ODE3OTQ1OTV9.j3AUv3arEYtGnUw_4igaOEUhHxfuV71_ZHDrGFV-JVE\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"arpesh\",\n        \"email\": \"arpesh@gmail.com\",\n        \"provider\": \"local\",\n        \"confirmed\": true,\n        \"blocked\": false,\n        \"createdAt\": \"2023-03-19T05:08:50.616Z\",\n        \"updatedAt\": \"2023-03-19T05:08:50.616Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:1337/api/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "560"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Mar 2023 03:34:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 5,\n            \"attributes\": {\n                \"name\": \"HTMl & CSS\",\n                \"createdAt\": \"2023-03-19T11:28:27.564Z\",\n                \"updatedAt\": \"2023-03-19T11:28:28.028Z\",\n                \"publishedAt\": \"2023-03-19T11:28:28.024Z\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"attributes\": {\n                \"name\": \"Node \",\n                \"createdAt\": \"2023-03-20T16:14:51.068Z\",\n                \"updatedAt\": \"2023-03-20T16:14:51.552Z\",\n                \"publishedAt\": \"2023-03-20T16:14:51.549Z\"\n            }\n        },\n        {\n            \"id\": 7,\n            \"attributes\": {\n                \"name\": \"React\",\n                \"createdAt\": \"2023-03-20T16:19:24.222Z\",\n                \"updatedAt\": \"2023-03-20T16:19:26.014Z\",\n                \"publishedAt\": \"2023-03-20T16:19:26.012Z\"\n            }\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"pageSize\": 25,\n            \"pageCount\": 1,\n            \"total\": 3\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:1337/api/categories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "560"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Mar 2023 03:34:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 5,\n            \"attributes\": {\n                \"name\": \"HTMl & CSS\",\n                \"createdAt\": \"2023-03-19T11:28:27.564Z\",\n                \"updatedAt\": \"2023-03-19T11:28:28.028Z\",\n                \"publishedAt\": \"2023-03-19T11:28:28.024Z\"\n            }\n        },\n        {\n            \"id\": 6,\n            \"attributes\": {\n                \"name\": \"Node \",\n                \"createdAt\": \"2023-03-20T16:14:51.068Z\",\n                \"updatedAt\": \"2023-03-20T16:14:51.552Z\",\n                \"publishedAt\": \"2023-03-20T16:14:51.549Z\"\n            }\n        },\n        {\n            \"id\": 7,\n            \"attributes\": {\n                \"name\": \"React\",\n                \"createdAt\": \"2023-03-20T16:19:24.222Z\",\n                \"updatedAt\": \"2023-03-20T16:19:26.014Z\",\n                \"publishedAt\": \"2023-03-20T16:19:26.012Z\"\n            }\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"pageSize\": 25,\n            \"pageCount\": 1,\n            \"total\": 3\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Stories",
+			"item": [
+				{
+					"name": "Stories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/stories?populate=*&filters[categories]=6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"stories"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								},
+								{
+									"key": "filters[author]",
+									"value": "15",
+									"disabled": true
+								},
+								{
+									"key": "filters[title]",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "filters[categories]",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Stories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:1337/api/stories?populate=*&filters[categories]=5&filters[author]=6",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"stories"
+									],
+									"query": [
+										{
+											"key": "populate",
+											"value": "*"
+										},
+										{
+											"key": "filters[categories]",
+											"value": "5"
+										},
+										{
+											"key": "filters[author]",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2538"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Mar 2023 16:55:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 50,\n            \"attributes\": {\n                \"title\": \"Testing for the auth 555212\",\n                \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n                \"createdAt\": \"2023-03-20T16:33:06.939Z\",\n                \"updatedAt\": \"2023-03-20T16:45:35.096Z\",\n                \"publishedAt\": \"2023-03-20T16:33:06.933Z\",\n                \"slug\": \"testing-for-the-auth-555212\",\n                \"image\": {\n                    \"data\": {\n                        \"id\": 1,\n                        \"attributes\": {\n                            \"name\": \"gallery-image-2.jpg\",\n                            \"alternativeText\": null,\n                            \"caption\": null,\n                            \"width\": 772,\n                            \"height\": 500,\n                            \"formats\": {\n                                \"thumbnail\": {\n                                    \"name\": \"thumbnail_gallery-image-2.jpg\",\n                                    \"hash\": \"thumbnail_gallery_image_2_9148dff839\",\n                                    \"ext\": \".jpg\",\n                                    \"mime\": \"image/jpeg\",\n                                    \"path\": null,\n                                    \"width\": 241,\n                                    \"height\": 156,\n                                    \"size\": 9.26,\n                                    \"url\": \"/uploads/thumbnail_gallery_image_2_9148dff839.jpg\"\n                                },\n                                \"small\": {\n                                    \"name\": \"small_gallery-image-2.jpg\",\n                                    \"hash\": \"small_gallery_image_2_9148dff839\",\n                                    \"ext\": \".jpg\",\n                                    \"mime\": \"image/jpeg\",\n                                    \"path\": null,\n                                    \"width\": 500,\n                                    \"height\": 324,\n                                    \"size\": 31.89,\n                                    \"url\": \"/uploads/small_gallery_image_2_9148dff839.jpg\"\n                                },\n                                \"medium\": {\n                                    \"name\": \"medium_gallery-image-2.jpg\",\n                                    \"hash\": \"medium_gallery_image_2_9148dff839\",\n                                    \"ext\": \".jpg\",\n                                    \"mime\": \"image/jpeg\",\n                                    \"path\": null,\n                                    \"width\": 750,\n                                    \"height\": 486,\n                                    \"size\": 61.19,\n                                    \"url\": \"/uploads/medium_gallery_image_2_9148dff839.jpg\"\n                                }\n                            },\n                            \"hash\": \"gallery_image_2_9148dff839\",\n                            \"ext\": \".jpg\",\n                            \"mime\": \"image/jpeg\",\n                            \"size\": 65.15,\n                            \"url\": \"/uploads/gallery_image_2_9148dff839.jpg\",\n                            \"previewUrl\": null,\n                            \"provider\": \"local\",\n                            \"provider_metadata\": null,\n                            \"createdAt\": \"2023-03-14T12:53:05.944Z\",\n                            \"updatedAt\": \"2023-03-14T13:10:35.675Z\"\n                        }\n                    }\n                },\n                \"author\": {\n                    \"data\": null\n                },\n                \"categories\": {\n                    \"data\": [\n                        {\n                            \"id\": 5,\n                            \"attributes\": {\n                                \"name\": \"HTMl & CSS\",\n                                \"createdAt\": \"2023-03-19T11:28:27.564Z\",\n                                \"updatedAt\": \"2023-03-19T11:28:28.028Z\",\n                                \"publishedAt\": \"2023-03-19T11:28:28.024Z\"\n                            }\n                        }\n                    ]\n                }\n            }\n        }\n    ],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 1,\n            \"pageSize\": 25,\n            \"pageCount\": 1,\n            \"total\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Story Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/stories/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"stories",
+								"8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Story Details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:1337/api/stories/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"stories",
+										"8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1100"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 14 Mar 2023 13:23:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 8,\n        \"attributes\": {\n            \"title\": \"Second\",\n            \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n            \"createdAt\": \"2023-03-14T13:22:53.337Z\",\n            \"updatedAt\": \"2023-03-14T13:22:53.337Z\",\n            \"publishedAt\": \"2023-03-14T13:22:53.335Z\"\n        }\n    },\n    \"meta\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTY3OTQ1NjQ4NCwiZXhwIjoxNjgyMDQ4NDg0fQ.AoQBlyBhXJgH0-ZMJjrk9vsmKDlGKxZFf3bBYMYvdYc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"title\": \"last\",\n        \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n        \"image\": 1,\n        \"categories\":[5,6,7]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/stories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"stories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Story",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"title\": \"Testing for the auth 555212\",\n        \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n        \"image\": 1,\n        \"categories\":[5,6,7]\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1337/api/stories",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"stories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1134"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 20 Mar 2023 16:33:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 50,\n        \"attributes\": {\n            \"title\": \"Testing for the auth 555212\",\n            \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n            \"createdAt\": \"2023-03-20T16:33:06.939Z\",\n            \"updatedAt\": \"2023-03-20T16:33:06.939Z\",\n            \"publishedAt\": \"2023-03-20T16:33:06.933Z\",\n            \"slug\": null\n        }\n    },\n    \"meta\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc5MjAyNTk1LCJleHAiOjE2ODE3OTQ1OTV9.j3AUv3arEYtGnUw_4igaOEUhHxfuV71_ZHDrGFV-JVE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"title\": \"First Blog\",\n        \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n        \"image\": 6\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/stories/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"stories",
+								"8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Story",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"title\": \"First Blog\",\n        \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n        \"image\": 6\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1337/api/stories/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"stories",
+										"8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1104"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 05:13:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 8,\n        \"attributes\": {\n            \"title\": \"First Blog\",\n            \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n            \"createdAt\": \"2023-03-14T13:22:53.337Z\",\n            \"updatedAt\": \"2023-03-19T05:13:16.836Z\",\n            \"publishedAt\": \"2023-03-14T13:22:53.335Z\"\n        }\n    },\n    \"meta\": {}\n}"
+						}
+					]
+				},
+				{
+					"name": "Story",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc5MjAyNTk1LCJleHAiOjE2ODE3OTQ1OTV9.j3AUv3arEYtGnUw_4igaOEUhHxfuV71_ZHDrGFV-JVE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/stories/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"stories",
+								"8"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Story",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:1337/api/stories/8",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"stories",
+										"8"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1104"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Mar 2023 05:14:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 8,\n        \"attributes\": {\n            \"title\": \"First Blog\",\n            \"description\": \"Amet nisl purus in mollis nunc sed id. Massa tincidunt dui ut ornare lectus sit amet est placerat. Orci ac auctor augue mauris augue neque gravida. Molestie nunc non blandit massa enim nec dui nunc. Metus dictum at tempor commodo ullamcorper. Cursus risus at ultrices mi tempus imperdiet nulla malesuada pellentesque. Amet commodo nulla facilisi nullam vehicula ipsum a. Ut faucibus pulvinar elementum integer. Sit amet risus nullam eget felis. Lacus vel facilisis volutpat est velit. Egestas sed sed risus pretium quam vulputate dignissim. Eget mauris pharetra et ultrices neque ornare. Ac tincidunt vitae semper quis lectus nulla at. Euismod in pellentesque massa placerat duis. Amet mattis vulputate enim nulla aliquet porttitor. Ut faucibus pulvinar elementum integer enim neque volutpat. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Nibh praesent tristique magna sit.\\nNew two\",\n            \"createdAt\": \"2023-03-14T13:22:53.337Z\",\n            \"updatedAt\": \"2023-03-19T05:13:16.836Z\",\n            \"publishedAt\": \"2023-03-14T13:22:53.335Z\"\n        }\n    },\n    \"meta\": {}\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "authors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/users?populate=*",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "authors",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:1337/api/users?populate=*",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"users"
+									],
+									"query": [
+										{
+											"key": "populate",
+											"value": "*"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "201"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Mar 2023 03:36:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 14,\n        \"username\": \"arpesh\",\n        \"email\": \"arpesh@gmail.com\",\n        \"provider\": \"local\",\n        \"confirmed\": true,\n        \"blocked\": false,\n        \"createdAt\": \"2023-03-21T05:40:40.406Z\",\n        \"updatedAt\": \"2023-03-21T05:40:40.406Z\",\n        \"stories\": []\n    }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "My Profile",
+			"item": [
+				{
+					"name": "me",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTY3OTQ1NjQ4NCwiZXhwIjoxNjgyMDQ4NDg0fQ.AoQBlyBhXJgH0-ZMJjrk9vsmKDlGKxZFf3bBYMYvdYc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1337/api/users/me?populate=*",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"users",
+								"me"
+							],
+							"query": [
+								{
+									"key": "populate",
+									"value": "*"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "me",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:1337/api/users/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"users",
+										"me"
+									],
+									"query": [
+										{
+											"key": "populate",
+											"value": "*",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Mar 2023 03:42:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 14,\n    \"username\": \"arpesh\",\n    \"email\": \"arpesh@gmail.com\",\n    \"provider\": \"local\",\n    \"confirmed\": true,\n    \"blocked\": false,\n    \"createdAt\": \"2023-03-21T05:40:40.406Z\",\n    \"updatedAt\": \"2023-03-21T05:40:40.406Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsImlhdCI6MTY3OTQ5NTAxNCwiZXhwIjoxNjgyMDg3MDE0fQ.X9Ygl2JqZePwTFRofVFNuODLpGDeYaGIT0UoQgKY-GE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"profilePicture\":37,\n        \"username\":\"arpeshgadekar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/users/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"users",
+								"14"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Profile",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"profilePicture\":37,\n        \"username\":\"arpeshgadekar\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1337/api/users/14",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1337",
+									"path": [
+										"api",
+										"users",
+										"14"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=31536000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Strapi <strapi.io>"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 24 Mar 2023 02:55:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 14,\n    \"username\": \"arpeshgadekar\",\n    \"email\": \"arpesh@gmail.com\",\n    \"provider\": \"local\",\n    \"confirmed\": true,\n    \"blocked\": false,\n    \"createdAt\": \"2023-03-21T05:40:40.406Z\",\n    \"updatedAt\": \"2023-03-24T02:55:02.888Z\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Upload Image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjc5MjAyNTk1LCJleHAiOjE2ODE3OTQ1OTV9.j3AUv3arEYtGnUw_4igaOEUhHxfuV71_ZHDrGFV-JVE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/home/arpesh/Pictures/Screenshot-3.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1337/api/upload/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"upload",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Upload Image",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/home/arpesh/Pictures/Screenshot-3.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:1337/api/upload/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1337",
+							"path": [
+								"api",
+								"upload",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Security-Policy",
+							"value": "connect-src 'self' https:;img-src 'self' data: blob: https://dl.airtable.com;media-src 'self' data: blob:;default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline'"
+						},
+						{
+							"key": "X-DNS-Prefetch-Control",
+							"value": "off"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536000; includeSubDomains"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "no-referrer"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Strapi <strapi.io>"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1255"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 19 Mar 2023 05:14:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 35,\n        \"name\": \"Screenshot-3.png\",\n        \"alternativeText\": null,\n        \"caption\": null,\n        \"width\": 1920,\n        \"height\": 1080,\n        \"formats\": {\n            \"thumbnail\": {\n                \"name\": \"thumbnail_Screenshot-3.png\",\n                \"hash\": \"thumbnail_Screenshot_3_9a038c6497\",\n                \"ext\": \".png\",\n                \"mime\": \"image/png\",\n                \"path\": null,\n                \"width\": 245,\n                \"height\": 138,\n                \"size\": 20.69,\n                \"url\": \"/uploads/thumbnail_Screenshot_3_9a038c6497.png\"\n            },\n            \"small\": {\n                \"name\": \"small_Screenshot-3.png\",\n                \"hash\": \"small_Screenshot_3_9a038c6497\",\n                \"ext\": \".png\",\n                \"mime\": \"image/png\",\n                \"path\": null,\n                \"width\": 500,\n                \"height\": 281,\n                \"size\": 58.3,\n                \"url\": \"/uploads/small_Screenshot_3_9a038c6497.png\"\n            },\n            \"medium\": {\n                \"name\": \"medium_Screenshot-3.png\",\n                \"hash\": \"medium_Screenshot_3_9a038c6497\",\n                \"ext\": \".png\",\n                \"mime\": \"image/png\",\n                \"path\": null,\n                \"width\": 750,\n                \"height\": 422,\n                \"size\": 109.54,\n                \"url\": \"/uploads/medium_Screenshot_3_9a038c6497.png\"\n            },\n            \"large\": {\n                \"name\": \"large_Screenshot-3.png\",\n                \"hash\": \"large_Screenshot_3_9a038c6497\",\n                \"ext\": \".png\",\n                \"mime\": \"image/png\",\n                \"path\": null,\n                \"width\": 1000,\n                \"height\": 563,\n                \"size\": 166.51,\n                \"url\": \"/uploads/large_Screenshot_3_9a038c6497.png\"\n            }\n        },\n        \"hash\": \"Screenshot_3_9a038c6497\",\n        \"ext\": \".png\",\n        \"mime\": \"image/png\",\n        \"size\": 80.25,\n        \"url\": \"/uploads/Screenshot_3_9a038c6497.png\",\n        \"previewUrl\": null,\n        \"provider\": \"local\",\n        \"provider_metadata\": null,\n        \"createdAt\": \"2023-03-19T05:14:54.500Z\",\n        \"updatedAt\": \"2023-03-19T05:14:54.500Z\"\n    }\n]"
+				}
+			]
+		}
+	]
+}

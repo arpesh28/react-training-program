@@ -1,0 +1,2505 @@
+{
+	"info": {
+		"_postman_id": "9be503f8-25b4-4981-bfe9-01bf80be0d84",
+		"name": "Eshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"arpesh1\",\n    \"email\": \"arpeshgadekar@gmail.com\",\n    \"password\": \"arpesh123\",\n    \"cPassword\": \"arpesh123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}signup",
+							"host": [
+								"{{url}}signup"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Signup",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"arpesh1\",\n    \"email\": \"arpeshgadekar@gmail.com\",\n    \"password\": \"arpesh123\",\n    \"cPassword\": \"arpesh123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}signup",
+									"host": [
+										"{{url}}signup"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "55"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"37-Gu1qk7wvgRipvCTT4XgC9+bjEgQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 04:24:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Account create successfully. Please login\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"arpeshgadekar@gmail.com\",\n    \"password\": \"arpesh123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}signin",
+							"host": [
+								"{{url}}signin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"arpeshgadekar@gmail.com\",\n    \"password\": \"arpesh123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}signin",
+									"host": [
+										"{{url}}signin"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "241"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f1-WDzHeO4oIHdRZAZKeNHXHpnQ6CU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 04:27:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFmYzkxMzFmODBkMjIzODI2MWYwZDQiLCJyb2xlIjoxLCJpYXQiOjE2Nzk4MDQ4Mzd9.iLBu170AR5EpaJlHgqwAgBmYqW-pgl4Z2IdCR40qMcg\",\n    \"user\": {\n        \"_id\": \"641fc9131f80d2238261f0d4\",\n        \"role\": 1,\n        \"iat\": 1679804837\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "get Single User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uId\":\"641eddff292c3f3d7ba3bee4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}user/single-user",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"single-user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uId\":\"641eddff292c3f3d7ba3bee4\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}user/single-user",
+									"host": [
+										"{{url}}user"
+									],
+									"path": [
+										"single-user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-AJXNt18y/H/yPDaxAGgBDvBZ3GE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 07:04:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"User\": {\n        \"userImage\": \"user.png\",\n        \"_id\": \"641eddff292c3f3d7ba3bee4\",\n        \"name\": \"Arpesh\",\n        \"email\": \"arpesh@gmail.com\",\n        \"createdAt\": \"2023-03-25T11:41:51.184Z\",\n        \"updatedAt\": \"2023-03-25T11:41:51.184Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "edit User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uId\":\"641eddff292c3f3d7ba3bee4\",\n    \"name\":\"arpesh\",\n    \"phoneNumber\":\"8552056578\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}user/edit-user",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"edit-user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "edit User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uId\":\"641eddff292c3f3d7ba3bee4\",\n    \"name\":\"arpesh gadekar\",\n    \"phoneNumber\":\"8552056578\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}user/edit-user",
+									"host": [
+										"{{url}}user"
+									],
+									"path": [
+										"edit-user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-taE7hs7Vq21EjQ0GMwwdrdED0So\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 07:08:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"User updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uId\":\"641eddff292c3f3d7ba3bee4\",\n   \"oldPassword\":\"arpesh1234\",\n   \"newPassword\":\"arpesh123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}user/change-password",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uId\":\"641eddff292c3f3d7ba3bee4\",\n   \"oldPassword\":\"arpesh1234\",\n   \"newPassword\":\"arpesh123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}user/change-password",
+									"host": [
+										"{{url}}user"
+									],
+									"path": [
+										"change-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-6iZUa4p4pxTcn3BIj7I7NfvdDAI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 07:14:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Password updated successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}user/all-user",
+							"host": [
+								"{{url}}user"
+							],
+							"path": [
+								"all-user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}user/all-user",
+									"host": [
+										"{{url}}user"
+									],
+									"path": [
+										"all-user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "665"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"299-5vrmEvAXq+QRrIWzEj5Ka2YDlYE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 07:05:36 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Users\": [\n        {\n            \"userImage\": \"user.png\",\n            \"verified\": \"false\",\n            \"secretKey\": null,\n            \"history\": [],\n            \"_id\": \"641fc9131f80d2238261f0d4\",\n            \"name\": \"Arpesh1\",\n            \"email\": \"arpeshgadekar@gmail.com\",\n            \"password\": \"$2a$10$hK7961OOxQAQTGx3zaocu.gS0MwSZgSdxJ530/EqVKcWmQAWXZ6li\",\n            \"userRole\": 1,\n            \"createdAt\": \"2023-03-26T04:24:51.235Z\",\n            \"updatedAt\": \"2023-03-26T04:24:51.235Z\",\n            \"__v\": 0\n        },\n        {\n            \"userImage\": \"user.png\",\n            \"verified\": \"false\",\n            \"secretKey\": null,\n            \"history\": [],\n            \"_id\": \"641eddff292c3f3d7ba3bee4\",\n            \"name\": \"Arpesh\",\n            \"email\": \"arpesh@gmail.com\",\n            \"password\": \"$2a$10$Wqr4Zrxx1fKfTaHwDT72EOUuoUgnjmF/DUvRqQQyTPOjK7mxvgLqK\",\n            \"userRole\": 1,\n            \"createdAt\": \"2023-03-25T11:41:51.184Z\",\n            \"updatedAt\": \"2023-03-25T11:41:51.184Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Payment Gateway",
+			"item": [
+				{
+					"name": "get token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uId\": \"641eddff292c3f3d7ba3bee4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}braintree/get-token",
+							"host": [
+								"{{url}}braintree"
+							],
+							"path": [
+								"get-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uId\": \"641eddff292c3f3d7ba3bee4\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}braintree/get-token",
+									"host": [
+										"{{url}}braintree"
+									],
+									"path": [
+										"get-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2517"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9d5-GK9sxxkGt8jp8jCArrw1MXGU8f0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 06:39:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"clientToken\": \"eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpGVXpJMU5pSXNJbXRwWkNJNklqSXdNVGd3TkRJMk1UWXRjMkZ1WkdKdmVDSXNJbWx6Y3lJNkltaDBkSEJ6T2k4dllYQnBMbk5oYm1SaWIzZ3VZbkpoYVc1MGNtVmxaMkYwWlhkaGVTNWpiMjBpZlEuZXlKbGVIQWlPakUyTnprNE9Ua3hORFFzSW1wMGFTSTZJamMxTkROaU56RmhMV1pqT1dNdE5EaGpOaTA1WmpNekxUQm1ZelV6WXpKbE0yVmpaQ0lzSW5OMVlpSTZJbTQzTkdSak1tdDNPV2N6ZDNNek9Ea2lMQ0pwYzNNaU9pSm9kSFJ3Y3pvdkwyRndhUzV6WVc1a1ltOTRMbUp5WVdsdWRISmxaV2RoZEdWM1lYa3VZMjl0SWl3aWJXVnlZMmhoYm5RaU9uc2ljSFZpYkdsalgybGtJam9pYmpjMFpHTXlhM2M1WnpOM2N6TTRPU0lzSW5abGNtbG1lVjlqWVhKa1gySjVYMlJsWm1GMWJIUWlPbVpoYkhObGZTd2ljbWxuYUhSeklqcGJJbTFoYm1GblpWOTJZWFZzZENKZExDSnpZMjl3WlNJNld5SkNjbUZwYm5SeVpXVTZWbUYxYkhRaVhTd2liM0IwYVc5dWN5STZlMzE5LnBsOXMyUlhJVjhlNmJUTG9TSGo1NVNBbDBGVDFNSWp3U3d2cDNzTFlQMzBFS3lmWDRYNG9ZckVoTFlPUUVkNjB4UUhtVVdidnppUHl6WGVYejAwbUx3IiwiY29uZmlnVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL243NGRjMmt3OWczd3MzODkvY2xpZW50X2FwaS92MS9jb25maWd1cmF0aW9uIiwiZ3JhcGhRTCI6eyJ1cmwiOiJodHRwczovL3BheW1lbnRzLnNhbmRib3guYnJhaW50cmVlLWFwaS5jb20vZ3JhcGhxbCIsImRhdGUiOiIyMDE4LTA1LTA4IiwiZmVhdHVyZXMiOlsidG9rZW5pemVfY3JlZGl0X2NhcmRzIl19LCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvbjc0ZGMya3c5ZzN3czM4OS9jbGllbnRfYXBpIiwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwibWVyY2hhbnRJZCI6Im43NGRjMmt3OWczd3MzODkiLCJhc3NldHNVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbSIsImF1dGhVcmwiOiJodHRwczovL2F1dGgudmVubW8uc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbSIsInZlbm1vIjoib2ZmIiwiY2hhbGxlbmdlcyI6W10sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsImFuYWx5dGljcyI6eyJ1cmwiOiJodHRwczovL29yaWdpbi1hbmFseXRpY3Mtc2FuZC5zYW5kYm94LmJyYWludHJlZS1hcGkuY29tL243NGRjMmt3OWczd3MzODkifSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImJpbGxpbmdBZ3JlZW1lbnRzRW5hYmxlZCI6dHJ1ZSwiZW52aXJvbm1lbnROb05ldHdvcmsiOmZhbHNlLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYWxsb3dIdHRwIjp0cnVlLCJkaXNwbGF5TmFtZSI6Imhhc2FuLXB5IiwiY2xpZW50SWQiOiJBUWwzbC1rMDJXYWN1UG1xdGhQT0owdXZBWEYtTTJSMmNnb2pJbERlWHV3Y1hKWXFKRWs5N1N5RlRiUDhCTjB6WE05YXJTZWNnc2V2YUNiUiIsInByaXZhY3lVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vcHAiLCJ1c2VyQWdyZWVtZW50VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3RvcyIsImJhc2VVcmwiOiJodHRwczovL2Fzc2V0cy5icmFpbnRyZWVnYXRld2F5LmNvbSIsImFzc2V0c1VybCI6Imh0dHBzOi8vY2hlY2tvdXQucGF5cGFsLmNvbSIsImRpcmVjdEJhc2VVcmwiOm51bGwsImVudmlyb25tZW50Ijoib2ZmbGluZSIsImJyYWludHJlZUNsaWVudElkIjoibWFzdGVyY2xpZW50MyIsIm1lcmNoYW50QWNjb3VudElkIjoiaGFzYW5weSIsImN1cnJlbmN5SXNvQ29kZSI6IlVTRCJ9fQ==\",\n    \"success\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "braintree payment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amountTotal\": 500,\n    \"paymentMethod\": \"tokencc_bh_2rgbgz_yszhn4_7kk46g_dd6pdy_st4\" // nonce()\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}braintree/payment",
+							"host": [
+								"{{url}}braintree"
+							],
+							"path": [
+								"payment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "allProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}product/all-product",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"all-product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "allProducts",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}product/all-product",
+									"host": [
+										"{{url}}product"
+									],
+									"path": [
+										"all-product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "416"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a0-qnM/vmEEuXYoOPjqMLmxwglXDFM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 04:47:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Products\": [\n        {\n            \"pSold\": 0,\n            \"pQuantity\": 5,\n            \"pImages\": [\n                \"1679744664866_video-img1.jpg\",\n                \"1679744664892_gallery-image-3.jpg\"\n            ],\n            \"pOffer\": \"10\",\n            \"_id\": \"641ede98292c3f3d7ba3bf04\",\n            \"pName\": \"Aus TUF\",\n            \"pDescription\": \"asfzxcvzxv\",\n            \"pPrice\": 1200,\n            \"pCategory\": {\n                \"_id\": \"641ede6a292c3f3d7ba3befe\",\n                \"cName\": \"Laptop\"\n            },\n            \"pStatus\": \"Active\",\n            \"pRatingsReviews\": [],\n            \"createdAt\": \"2023-03-25T11:44:24.903Z\",\n            \"updatedAt\": \"2023-03-25T11:44:24.903Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "product by category",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"catId\": \"641fd08ab472372edf700b08\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}product/product-by-category",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"product-by-category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "product by category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"catId\": \"641fd08ab472372edf700b08\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}product/product-by-category",
+									"host": [
+										"{{url}}product"
+									],
+									"path": [
+										"product-by-category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2188"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"88c-l1gVjRakJhXZYPapDWJwdqIj1Xo\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 06:56:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Products\": [\n        {\n            \"pSold\": 0,\n            \"pQuantity\": 20,\n            \"pImages\": [\n                \"1679808237906_pexels-mica-asato-1082528.jpg\",\n                \"1679808237939_istockphoto-1339264709-170667a.jpg\"\n            ],\n            \"pOffer\": \"10\",\n            \"_id\": \"641fd6edb472372edf700b26\",\n            \"pName\": \"Denim Jeans\",\n            \"pDescription\": \"Denim is a sturdy cotton warp-faced textile in which the weft passes under two or more warp threads. This twill weaving produces a diagonal ribbing that distinguishes it from cotton duck.\",\n            \"pPrice\": 500,\n            \"pCategory\": {\n                \"_id\": \"641fd08ab472372edf700b08\",\n                \"cName\": \"Clothes\"\n            },\n            \"pStatus\": \"Active\",\n            \"pRatingsReviews\": [],\n            \"createdAt\": \"2023-03-26T05:23:57.946Z\",\n            \"updatedAt\": \"2023-03-26T05:23:57.946Z\",\n            \"__v\": 0\n        },\n        {\n            \"pSold\": 0,\n            \"pQuantity\": 20,\n            \"pImages\": [\n                \"1679808711054_pexels-mica-asato-1082528.jpg\",\n                \"1679808711092_istockphoto-1339264709-170667a.jpg\"\n            ],\n            \"pOffer\": \"10\",\n            \"_id\": \"641fd8c7ec8aea3cf13a38f6\",\n            \"pName\": \"Denim Jeans\",\n            \"pDescription\": \"Denim is a sturdy cotton warp-faced textile in which the weft passes under two or more warp threads. This twill weaving produces a diagonal ribbing that distinguishes it from cotton duck.\",\n            \"pPrice\": 500,\n            \"pCategory\": {\n                \"_id\": \"641fd08ab472372edf700b08\",\n                \"cName\": \"Clothes\"\n            },\n            \"pStatus\": \"Active\",\n            \"pRatingsReviews\": [\n                {\n                    \"createdAt\": \"2023-03-26T05:31:32.267Z\",\n                    \"_id\": \"641fda06ec8aea3cf13a3934\",\n                    \"review\": \"sasdxxzv  xvz vasdadaw   sdf dsa \",\n                    \"user\": \"641eddff292c3f3d7ba3bee4\",\n                    \"rating\": \"5\"\n                },\n                {\n                    \"createdAt\": \"2023-03-26T05:31:32.267Z\",\n                    \"_id\": \"641fda34ec8aea3cf13a393a\",\n                    \"review\": \"sasdxxzv  xvz vasdadaw   sdf dsa \",\n                    \"user\": \"641eddff292c3f3d7ba3bee4\",\n                    \"rating\": \"5\"\n                },\n                {\n                    \"createdAt\": \"2023-03-26T05:31:32.267Z\",\n                    \"_id\": \"641fda58ec8aea3cf13a393d\",\n                    \"review\": \"sasdxxzv  xvz vasdadaw   sdf dsa \",\n                    \"user\": \"641eddff292c3f3d7ba3bee4\",\n                    \"rating\": \"5\"\n                }\n            ],\n            \"createdAt\": \"2023-03-26T05:31:51.100Z\",\n            \"updatedAt\": \"2023-03-26T05:40:40.446Z\",\n            \"__v\": 0\n        },\n        {\n            \"pSold\": 0,\n            \"pQuantity\": 12,\n            \"pImages\": [\n                \"1679808725653_WhatsApp Image 2023-03-11 at 21.41.49.jpeg\",\n                \"1679808725656_WhatsApp Image 2023-03-11 at 21.41.47 (1).jpeg\"\n            ],\n            \"pOffer\": \"022\",\n            \"_id\": \"641fd8d5ec8aea3cf13a38f8\",\n            \"pName\": \"asdf\",\n            \"pDescription\": \"zxcv\",\n            \"pPrice\": 12,\n            \"pCategory\": {\n                \"_id\": \"641fd08ab472372edf700b08\",\n                \"cName\": \"Clothes\"\n            },\n            \"pStatus\": \"Active\",\n            \"pRatingsReviews\": [],\n            \"createdAt\": \"2023-03-26T05:32:05.665Z\",\n            \"updatedAt\": \"2023-03-26T05:32:05.665Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get single Product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pId\": \"641fd8c7ec8aea3cf13a38f6\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}product/single-product",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"single-product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get single Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pId\": \"641fd8c7ec8aea3cf13a38f6\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}product/single-product",
+									"host": [
+										"{{url}}product"
+									],
+									"path": [
+										"single-product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1368"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"558-0GwFQ16O2BxG4Ncs4/jyECerM6s\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 28 Mar 2023 02:00:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Product\": {\n        \"pSold\": 0,\n        \"pQuantity\": 20,\n        \"pImages\": [\n            \"1679808711054_pexels-mica-asato-1082528.jpg\",\n            \"1679808711092_istockphoto-1339264709-170667a.jpg\"\n        ],\n        \"pOffer\": \"10\",\n        \"_id\": \"641fd8c7ec8aea3cf13a38f6\",\n        \"pName\": \"Denim Jeans\",\n        \"pDescription\": \"Denim is a sturdy cotton warp-faced textile in which the weft passes under two or more warp threads. This twill weaving produces a diagonal ribbing that distinguishes it from cotton duck.\",\n        \"pPrice\": 500,\n        \"pCategory\": {\n            \"_id\": \"641fd08ab472372edf700b08\",\n            \"cName\": \"Clothes\"\n        },\n        \"pStatus\": \"Active\",\n        \"pRatingsReviews\": [\n            {\n                \"createdAt\": \"2023-03-26T05:31:32.267Z\",\n                \"_id\": \"641fda06ec8aea3cf13a3934\",\n                \"review\": \"sasdxxzv  xvz vasdadaw   sdf dsa \",\n                \"user\": {\n                    \"userImage\": \"user.png\",\n                    \"_id\": \"641eddff292c3f3d7ba3bee4\",\n                    \"name\": \"arpesh gadekar\",\n                    \"email\": \"arpesh@gmail.com\"\n                },\n                \"rating\": \"5\"\n            },\n            {\n                \"createdAt\": \"2023-03-26T05:31:32.267Z\",\n                \"_id\": \"641fda34ec8aea3cf13a393a\",\n                \"review\": \"sasdxxzv  xvz vasdadaw   sdf dsa \",\n                \"user\": {\n                    \"userImage\": \"user.png\",\n                    \"_id\": \"641eddff292c3f3d7ba3bee4\",\n                    \"name\": \"arpesh gadekar\",\n                    \"email\": \"arpesh@gmail.com\"\n                },\n                \"rating\": \"5\"\n            },\n            {\n                \"createdAt\": \"2023-03-26T05:31:32.267Z\",\n                \"_id\": \"641fda58ec8aea3cf13a393d\",\n                \"review\": \"sasdxxzv  xvz vasdadaw   sdf dsa \",\n                \"user\": {\n                    \"userImage\": \"user.png\",\n                    \"_id\": \"641eddff292c3f3d7ba3bee4\",\n                    \"name\": \"arpesh gadekar\",\n                    \"email\": \"arpesh@gmail.com\"\n                },\n                \"rating\": \"5\"\n            }\n        ],\n        \"createdAt\": \"2023-03-26T05:31:51.100Z\",\n        \"updatedAt\": \"2023-03-26T05:40:40.446Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "cartProducts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}product/cart-product",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"cart-product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pImages",
+									"value": "1679808335008_depositphotos_147554311-stock-photo-set-of-stylish-clothes-and.jpg,1679808335009_F9tjZiPUEm-kkcdX20ZU5R_YpNBlnBeQvXfOphczskE.jpg",
+									"type": "text"
+								},
+								{
+									"key": "pEditImages",
+									"type": "file",
+									"src": "/home/arpesh/Pictures/Eshop Images/istockphoto-1339264709-170667a.jpg"
+								},
+								{
+									"key": "pEditImages",
+									"type": "file",
+									"src": "/home/arpesh/Pictures/gallery-image-3.jpg"
+								},
+								{
+									"key": "pName",
+									"value": "Denim Jeans",
+									"type": "text"
+								},
+								{
+									"key": "pDescription",
+									"value": "Denim is a sturdy cotton warp-faced textile in which the weft passes under two or more warp threads. This twill weaving produces a diagonal ribbing that distinguishes it from cotton duck.",
+									"type": "text"
+								},
+								{
+									"key": "pStatus",
+									"value": "Active",
+									"description": "Disabled",
+									"type": "text"
+								},
+								{
+									"key": "pCategory",
+									"value": "641fd08ab472372edf700b08",
+									"type": "text"
+								},
+								{
+									"key": "pQuantity",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "pPrice",
+									"value": "500",
+									"type": "text"
+								},
+								{
+									"key": "pOffer",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "pId",
+									"value": "641ede98292c3f3d7ba3bf04",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}product/edit-product",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"edit-product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "edit product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "pImages",
+											"value": "1679808335008_depositphotos_147554311-stock-photo-set-of-stylish-clothes-and.jpg,1679808335009_F9tjZiPUEm-kkcdX20ZU5R_YpNBlnBeQvXfOphczskE.jpg",
+											"type": "text"
+										},
+										{
+											"key": "pEditImages",
+											"type": "file",
+											"src": "/home/arpesh/Pictures/Eshop Images/istockphoto-1339264709-170667a.jpg"
+										},
+										{
+											"key": "pEditImages",
+											"type": "file",
+											"src": "/home/arpesh/Pictures/gallery-image-3.jpg"
+										},
+										{
+											"key": "pName",
+											"value": "Denim Jeans",
+											"type": "text"
+										},
+										{
+											"key": "pDescription",
+											"value": "Denim is a sturdy cotton warp-faced textile in which the weft passes under two or more warp threads. This twill weaving produces a diagonal ribbing that distinguishes it from cotton duck.",
+											"type": "text"
+										},
+										{
+											"key": "pStatus",
+											"value": "Active",
+											"description": "Disabled",
+											"type": "text"
+										},
+										{
+											"key": "pCategory",
+											"value": "641fd08ab472372edf700b08",
+											"type": "text"
+										},
+										{
+											"key": "pQuantity",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "pPrice",
+											"value": "500",
+											"type": "text"
+										},
+										{
+											"key": "pOffer",
+											"value": "10",
+											"type": "text"
+										},
+										{
+											"key": "pId",
+											"value": "641ede98292c3f3d7ba3bf04",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}product/edit-product",
+									"host": [
+										"{{url}}product"
+									],
+									"path": [
+										"edit-product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27-XBeD1qLnwwsxt3UHFkpR7WW4Vz0\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:31:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Product edit successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "add Review",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\": \"5\",\n    \"review\": \"sasdxxzv  xvz vasdadaw   sdf dsa \",\n    \"pId\": \"641fd8c7ec8aea3cf13a38f6\",\n    \"uId\": \"641eddff292c3f3d7ba3bee4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}product/add-review",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"add-review"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add Review",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"rating\": \"5\",\n    \"review\": \"sasdxxzv  xvz vasdadaw   sdf dsa \",\n    \"pId\": \"641fd8c7ec8aea3cf13a38f6\",\n    \"uId\": \"641eddff292c3f3d7ba3bee4\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}product/add-review",
+									"host": [
+										"{{url}}product"
+									],
+									"path": [
+										"add-review"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-sBC7BcVxPNkk33MYf2hJOCbPeuw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:38:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Thanks for your review\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rId\": \"641fda58ec8aea3cf13a393f\",\n    \"pId\": \"641fd8c7ec8aea3cf13a38f6\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}product/delete-review",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"delete-review"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete reviews",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"rId\": \"641fda58ec8aea3cf13a393f\",\n    \"pId\": \"641fd8c7ec8aea3cf13a38f6\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}product/delete-review",
+									"host": [
+										"{{url}}product"
+									],
+									"path": [
+										"delete-review"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "36"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"24-frcnuO3K6cnyyLkv72uuzicGmYk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:40:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Your review is deleted\"\n}"
+						}
+					]
+				},
+				{
+					"name": "add product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pImage",
+									"type": "file",
+									"src": "/home/arpesh/Pictures/Eshop Images/pexels-mica-asato-1082528.jpg"
+								},
+								{
+									"key": "pImage",
+									"type": "file",
+									"src": "/home/arpesh/Pictures/Eshop Images/istockphoto-1339264709-170667a.jpg"
+								},
+								{
+									"key": "pName",
+									"value": "Denim Jeans",
+									"type": "text"
+								},
+								{
+									"key": "pDescription",
+									"value": "Denim is a sturdy cotton warp-faced textile in which the weft passes under two or more warp threads. This twill weaving produces a diagonal ribbing that distinguishes it from cotton duck.",
+									"type": "text"
+								},
+								{
+									"key": "pStatus",
+									"value": "Active",
+									"description": "Disabled",
+									"type": "text"
+								},
+								{
+									"key": "pCategory",
+									"value": "641fd08ab472372edf700b08",
+									"type": "text"
+								},
+								{
+									"key": "pQuantity",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "pPrice",
+									"value": "500",
+									"type": "text"
+								},
+								{
+									"key": "pOffer",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}product/add-product",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"add-product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "pImage",
+											"type": "file",
+											"src": "/home/arpesh/Pictures/Eshop Images/pexels-mica-asato-1082528.jpg"
+										},
+										{
+											"key": "pImage",
+											"type": "file",
+											"src": "/home/arpesh/Pictures/Eshop Images/istockphoto-1339264709-170667a.jpg"
+										},
+										{
+											"key": "pName",
+											"value": "Denim Jeans",
+											"type": "text"
+										},
+										{
+											"key": "pDescription",
+											"value": "Denim is a sturdy cotton warp-faced textile in which the weft passes under two or more warp threads. This twill weaving produces a diagonal ribbing that distinguishes it from cotton duck.",
+											"type": "text"
+										},
+										{
+											"key": "pStatus",
+											"value": "Active",
+											"description": "Disabled",
+											"type": "text"
+										},
+										{
+											"key": "pCategory",
+											"value": "641fd08ab472372edf700b08",
+											"type": "text"
+										},
+										{
+											"key": "pQuantity",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "pPrice",
+											"value": "500",
+											"type": "text"
+										},
+										{
+											"key": "pOffer",
+											"value": "10",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}product/add-product",
+									"host": [
+										"{{url}}product"
+									],
+									"path": [
+										"add-product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-dcrHbgIe6MUm8nZzopHU1GEGCCQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:23:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Product created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pId\": \"641fd65ab472372edf700b22\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}product/delete-product",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"delete-product"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"pId\": \"641fd65ab472372edf700b22\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}product/delete-product",
+									"host": [
+										"{{url}}product"
+									],
+									"path": [
+										"delete-product"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a-SvNPUenL4GfcxCV4g5wJhlj4CSQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:33:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Product deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "get all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}order/get-all-orders",
+							"host": [
+								"{{url}}order"
+							],
+							"path": [
+								"get-all-orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}order/get-all-orders",
+									"host": [
+										"{{url}}order"
+									],
+									"path": [
+										"get-all-orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "631"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"277-3s8OGPlarE34zj3iQ4JJVeXvL/8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:51:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Orders\": [\n        {\n            \"status\": \"Not processed\",\n            \"_id\": \"641fdc696e2a11412f15609b\",\n            \"allProduct\": [\n                {\n                    \"_id\": \"641fdc696e2a11412f15609c\",\n                    \"id\": null,\n                    \"quantitiy\": 1\n                },\n                {\n                    \"_id\": \"641fdc696e2a11412f15609d\",\n                    \"id\": {\n                        \"pImages\": [\n                            \"1679808711054_pexels-mica-asato-1082528.jpg\",\n                            \"1679808711092_istockphoto-1339264709-170667a.jpg\"\n                        ],\n                        \"_id\": \"641fd8c7ec8aea3cf13a38f6\",\n                        \"pName\": \"Denim Jeans\",\n                        \"pPrice\": 500\n                    },\n                    \"quantitiy\": 1\n                }\n            ],\n            \"user\": {\n                \"_id\": \"641eddff292c3f3d7ba3bee4\",\n                \"name\": \"Arpesh\",\n                \"email\": \"arpesh@gmail.com\"\n            },\n            \"amount\": 1700,\n            \"transactionId\": \"84p8af85\",\n            \"address\": \"asdfasdf\",\n            \"phone\": 8552056578,\n            \"createdAt\": \"2023-03-26T05:47:21.419Z\",\n            \"updatedAt\": \"2023-03-26T05:47:21.419Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get Order By User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uId\":\"641eddff292c3f3d7ba3bee4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}order/order-by-user",
+							"host": [
+								"{{url}}order"
+							],
+							"path": [
+								"order-by-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oId\": \"641fdc696e2a11412f15609b\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}order/delete-order",
+							"host": [
+								"{{url}}order"
+							],
+							"path": [
+								"delete-order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oId\": \"641fdc696e2a11412f15609b\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}order/delete-order",
+									"host": [
+										"{{url}}order"
+									],
+									"path": [
+										"delete-order"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "update order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oId\": \"641fdc696e2a11412f15609b\",\n    \"status\": \"Not processed\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}order/update-order",
+							"host": [
+								"{{url}}order"
+							],
+							"path": [
+								"update-order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Not Processed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oId\": \"641fdc696e2a11412f15609b\",\n    \"status\": \"Not processed\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}order/update-order",
+									"host": [
+										"{{url}}order"
+									],
+									"path": [
+										"update-order"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Processing",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oId\": \"641fdc696e2a11412f15609b\",\n    \"status\": \"Processing\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}order/update-order",
+									"host": [
+										"{{url}}order"
+									],
+									"path": [
+										"update-order"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Shippped",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oId\": \"641fdc696e2a11412f15609b\",\n    \"status\": \"Shipped\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}order/update-order",
+									"host": [
+										"{{url}}order"
+									],
+									"path": [
+										"update-order"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Delivered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oId\": \"641fdc696e2a11412f15609b\",\n    \"status\": \"Delivered\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}order/update-order",
+									"host": [
+										"{{url}}order"
+									],
+									"path": [
+										"update-order"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Cancelled",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oId\": \"641fdc696e2a11412f15609b\",\n    \"status\": \"Cancelled\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}order/update-order",
+									"host": [
+										"{{url}}order"
+									],
+									"path": [
+										"update-order"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"allProduct\": [\n        {\n            \"id\": \"641fd8c7ec8aea3cf13a38f6\",\n            \"quantitiy\": 5,\n            \"price\": 500\n        }\n    ],\n    \"user\": \"641eddff292c3f3d7ba3bee4\",\n    \"amount\": \"500.00\",\n    \"transactionId\": \"5m2vkg8w\",\n    \"address\": \"73/2 MADHALAWADA, HARMAL TITA\",\n    \"phone\": \"08552056578\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}order/create-order",
+							"host": [
+								"{{url}}order"
+							],
+							"path": [
+								"create-order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"allProduct\": [\n        {\n            \"id\": \"641fd8c7ec8aea3cf13a38f6\",\n            \"quantitiy\": 5,\n            \"price\": 500\n        }\n    ],\n    \"user\": \"641eddff292c3f3d7ba3bee4\",\n    \"amount\": \"500.00\",\n    \"transactionId\": \"5m2vkg8w\",\n    \"address\": \"73/2 MADHALAWADA, HARMAL TITA\",\n    \"phone\": \"08552056578\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}order/create-order",
+									"host": [
+										"{{url}}order"
+									],
+									"path": [
+										"create-order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"28-t2Pt2a2vyECGT/Xd/BvIX/jLgCc\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 06:52:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Order created successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "allCategories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}category/all-category",
+							"host": [
+								"{{url}}category"
+							],
+							"path": [
+								"all-category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "allCategories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}category/all-category",
+									"host": [
+										"{{url}}category"
+									],
+									"path": [
+										"all-category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "519"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"207-paI55BtjWkL77iqDQ3xOOF+lQts\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 04:48:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"Categories\": [\n        {\n            \"_id\": \"641ede6a292c3f3d7ba3befe\",\n            \"cName\": \"Laptop\",\n            \"cDescription\": \"sxcvxzcv\",\n            \"cStatus\": \"Active\",\n            \"cImage\": \"1679744618150_slider-img-3.jpg\",\n            \"createdAt\": \"2023-03-25T11:43:38.475Z\",\n            \"updatedAt\": \"2023-03-25T11:43:38.475Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"641ede5c292c3f3d7ba3befa\",\n            \"cName\": \"Mobile\",\n            \"cDescription\": \"asdfasfdasf\",\n            \"cStatus\": \"Active\",\n            \"cImage\": \"1679744604673_how-to-build-a-react-project-with-create-react-app-in-10-steps.png\",\n            \"createdAt\": \"2023-03-25T11:43:24.952Z\",\n            \"updatedAt\": \"2023-03-25T11:43:24.952Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "add category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFlZGRmZjI5MmMzZjNkN2JhM2JlZTQiLCJyb2xlIjoxLCJpYXQiOjE2Nzk4MDYzNDZ9.BEAaPI9RzvqxbEK89BD95ea53QXwdtJIx3nfQb6Jll0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cImage",
+									"type": "file",
+									"src": "/home/arpesh/Pictures/Eshop Images/pexels-mica-asato-1082528.jpg"
+								},
+								{
+									"key": "cName",
+									"value": "Jeans",
+									"type": "text"
+								},
+								{
+									"key": "cDescription",
+									"value": "Clothing serves many purposes: it can serve as protection from the elements, rough surfaces, sharp stones, rash-causing plants, and insect bites, by providing a barrier between the skin and the environment.",
+									"type": "text"
+								},
+								{
+									"key": "cStatus",
+									"value": "Active",
+									"description": "Active or Disabled",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}category/add-category",
+							"host": [
+								"{{url}}category"
+							],
+							"path": [
+								"add-category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFlZGRmZjI5MmMzZjNkN2JhM2JlZTQiLCJyb2xlIjoxLCJpYXQiOjE2Nzk4MDYzNDZ9.BEAaPI9RzvqxbEK89BD95ea53QXwdtJIx3nfQb6Jll0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cImage",
+											"type": "file",
+											"src": "/home/arpesh/Pictures/Eshop Images/pexels-mica-asato-1082528.jpg"
+										},
+										{
+											"key": "cName",
+											"value": "Jeans",
+											"type": "text"
+										},
+										{
+											"key": "cDescription",
+											"value": "Clothing serves many purposes: it can serve as protection from the elements, rough surfaces, sharp stones, rash-causing plants, and insect bites, by providing a barrier between the skin and the environment.",
+											"type": "text"
+										},
+										{
+											"key": "cStatus",
+											"value": "Active",
+											"description": "Active or Disabled",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}category/add-category",
+									"host": [
+										"{{url}}category"
+									],
+									"path": [
+										"add-category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-1UEvVuLWHUskMkgyb1sDuHoos60\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:01:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Category created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "edit category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFlZGRmZjI5MmMzZjNkN2JhM2JlZTQiLCJyb2xlIjoxLCJpYXQiOjE2Nzk4MDYzNDZ9.BEAaPI9RzvqxbEK89BD95ea53QXwdtJIx3nfQb6Jll0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cId\": \"641fd133b472372edf700b0c\",\n    \"cDescription\": \"adfasdf\",\n    \"cStatus\": \"Active\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}category/edit-category",
+							"host": [
+								"{{url}}category"
+							],
+							"path": [
+								"edit-category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFlZGRmZjI5MmMzZjNkN2JhM2JlZTQiLCJyb2xlIjoxLCJpYXQiOjE2Nzk4MDYzNDZ9.BEAaPI9RzvqxbEK89BD95ea53QXwdtJIx3nfQb6Jll0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "cImage",
+											"type": "file",
+											"src": "/home/arpesh/Pictures/Eshop Images/pexels-mica-asato-1082528.jpg"
+										},
+										{
+											"key": "cName",
+											"value": "Jeans",
+											"type": "text"
+										},
+										{
+											"key": "cDescription",
+											"value": "Clothing serves many purposes: it can serve as protection from the elements, rough surfaces, sharp stones, rash-causing plants, and insect bites, by providing a barrier between the skin and the environment.",
+											"type": "text"
+										},
+										{
+											"key": "cStatus",
+											"value": "Active",
+											"description": "Active or Disabled",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}category/add-category",
+									"host": [
+										"{{url}}category"
+									],
+									"path": [
+										"add-category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-1UEvVuLWHUskMkgyb1sDuHoos60\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:01:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Category created successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFlZGRmZjI5MmMzZjNkN2JhM2JlZTQiLCJyb2xlIjoxLCJpYXQiOjE2Nzk4MDYzNDZ9.BEAaPI9RzvqxbEK89BD95ea53QXwdtJIx3nfQb6Jll0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cId\": \"641fd133b472372edf700b0c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}category/delete-category",
+							"host": [
+								"{{url}}category"
+							],
+							"path": [
+								"delete-category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDFlZGRmZjI5MmMzZjNkN2JhM2JlZTQiLCJyb2xlIjoxLCJpYXQiOjE2Nzk4MDYzNDZ9.BEAaPI9RzvqxbEK89BD95ea53QXwdtJIx3nfQb6Jll0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"cId\": \"641fd133b472372edf700b0c\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}category/delete-category",
+									"host": [
+										"{{url}}category"
+									],
+									"path": [
+										"delete-category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-HU1jATl0nTXblCczl9eOaJAGCzM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 26 Mar 2023 05:18:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": \"Category deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Wishlist",
+			"item": [
+				{
+					"name": "wishlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productArray\": [\n        \"641fd8c7ec8aea3cf13a38f6\",\n        \"641fd8d5ec8aea3cf13a38f8\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}product/wish-product",
+							"host": [
+								"{{url}}product"
+							],
+							"path": [
+								"wish-product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

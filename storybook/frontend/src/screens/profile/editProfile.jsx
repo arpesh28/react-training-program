@@ -3,9 +3,11 @@ import axios from "axios";
 import Header from "../../components/header";
 import { useNavigate } from "react-router-dom";
 
-import { useSelector } from "react-redux";
+import { useSelector, connect } from "react-redux";
 
-export default function EditProfile() {
+import { addImage, updateStory } from "../../store/stories";
+
+function EditProfile({ addImage, updateStory }) {
   const navigate = useNavigate();
   const [user, setUser] = useState(
     useSelector((state) => state.user.userDetails)
@@ -19,19 +21,16 @@ export default function EditProfile() {
     setLoadingImage(true);
     const formData = new FormData();
     formData.append("files", e.target.files[0]);
-    axios({
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}upload`,
-      data: formData,
-      headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-    }).then((response) => {
+    addImage(formData, (response) => {
       setLoadingImage(false);
-      const newUser = structuredClone(user);
-      const newErrors = structuredClone(errors);
-      newUser.profilePicture = response.data[0];
-      delete newErrors.profilePicture;
-      setErrors(newErrors);
-      setUser(newUser);
+      if (response.status === 200) {
+        const newUser = structuredClone(user);
+        const newErrors = structuredClone(errors);
+        newUser.profilePicture = response.data[0];
+        delete newErrors.profilePicture;
+        setErrors(newErrors);
+        setUser(newUser);
+      }
     });
   };
   const handleSubmit = (e) => {
@@ -47,20 +46,14 @@ export default function EditProfile() {
       profilePicture: user?.profilePicture?.id,
     };
     if (usernameChanged) payLoad.username = user?.username;
-    axios({
-      method: "PUT",
-      url: `${process.env.REACT_APP_API_URL}users/14`,
-      data: payLoad,
-      headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-    })
-      .then((response) => {
+    updateStory(payLoad, user?.id, (res) => {
+      if (res.status === 200) {
         setLoading(false);
         navigate("/profile");
-      })
-      .catch((err) => {
+      } else {
         setLoading(false);
-        console.log("err:", err);
-      });
+      }
+    });
   };
 
   return (
@@ -108,3 +101,17 @@ export default function EditProfile() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addImage: (data, callback) => dispatch(addImage(data, callback)),
+    updateStory: (data, id, callback) =>
+      dispatch(updateStory(data, id, callback)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

@@ -7,14 +7,17 @@ import { toast } from "react-toastify";
 import viewIcon from "../../include/images/view.png";
 import hideIcon from "../../include/images/hide.png";
 
-export default function Login() {
+//  Redux
+import { connect } from "react-redux";
+import { login } from "../../store/auth";
+
+function Login({ showAuth, login }) {
   const navigate = useNavigate();
   const [data, setData] = useState({
     email: "",
     password: "",
   });
   const [showPass, setShowPass] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
   const onChange = (e) => {
@@ -35,25 +38,15 @@ export default function Login() {
     if (newErrors.email || newErrors.password) {
       return setErrors(newErrors);
     }
-    setLoading(true);
-    axios({
-      method: "post",
-      url: `${process.env.REACT_APP_API_URL}auth/local/`,
-      data: {
-        identifier: data.email,
-        password: data.password,
-      },
-    })
-      .then((response) => {
-        localStorage.setItem("jwt", response.data.jwt);
-        setLoading(false);
+    login({ identifier: data.email, password: data.password }, (res) => {
+      if (res.status === 200) {
         navigate("/");
-      })
-      .catch((err) => {
-        toast.error(err?.response?.data?.error?.message);
-        setLoading(false);
-      });
+      } else {
+        toast.error(res?.data?.error?.message);
+      }
+    });
   };
+  const { loading } = showAuth;
 
   return (
     <div className="container d-flex w-100 onboarding-wrapper align-items-center justify-content-center">
@@ -116,3 +109,17 @@ export default function Login() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    showAuth: state.auth,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (data, callback) => dispatch(login(data, callback)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
