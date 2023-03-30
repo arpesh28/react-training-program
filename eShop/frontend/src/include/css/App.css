@@ -1,0 +1,15 @@
+.category-card img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.product-card .product-content {
+  background-color: #e6e9f4;
+  padding: 30px 20px;
+}
+.product-card img {
+  width: 100%;
+  object-fit: cover;
+}
