@@ -9,36 +9,38 @@ import StoryCard from "../../components/storyCard";
 import Header from "../../components/header";
 
 //  Redux
-import { useDispatch, useSelector } from "react-redux";
-import { getStories, deleteStory } from "../../store/stories";
+import { useDispatch, useSelector, connect } from "react-redux";
+import {
+  getStories,
+  deleteStory,
+  loadStories,
+  loadCategories,
+} from "../../store/stories";
+import { loadAuthors } from "../../store/user";
 
-export default function StoryLists() {
+function StoryLists({
+  showStories,
+  loadStories,
+  loadCategories,
+  loadAuthors,
+  showUser,
+}) {
   const dispatch = useDispatch();
   const ref = useRef(null);
+  const { authorList } = showUser;
+  const { allCategories } = showStories;
   // States
   // const [stories, setStories] = useState([]);
   const stories = useSelector((state) => state.stories.storyList) ?? [];
   const [loading, setLoading] = useState(true);
-  const [allCategories, setAllCategories] = useState([]);
-  const [allAuthors, setAllAuthors] = useState([]);
   const [filters, setFilters] = useState(null);
 
   // UseEffect
   useEffect(() => {
     setLoading(true);
     getAllStories();
-    axios({
-      method: "get",
-      url: `${process.env.REACT_APP_API_URL}categories`,
-    }).then((response) => {
-      setAllCategories(response.data.data);
-    });
-    axios({
-      method: "get",
-      url: `${process.env.REACT_APP_API_URL}users?populate=*`,
-    }).then((response) => {
-      setAllAuthors(response.data);
-    });
+    loadCategories(() => {});
+    loadAuthors(() => {});
   }, []);
 
   const getAllStories = () => {
@@ -49,21 +51,11 @@ export default function StoryLists() {
     if (filters?.category)
       params["filters[categories]"] = filters.category.value;
     if (filters?.author) params["filters[author]"] = filters.author.value;
-    axios({
-      method: "get",
-      url: `${process.env.REACT_APP_API_URL}stories?`,
-      params,
-    })
-      .then((response) => {
-        dispatch(getStories(response.data.data));
-        // setStories(response.data.data);
-        setLoading(false);
-        ref.current.complete();
-      })
-      .catch((err) => {
-        setLoading(false);
-        ref.current.complete();
-      });
+
+    loadStories(params, () => {
+      setLoading(false);
+      ref.current.complete();
+    });
   };
 
   const deleteStoryFromState = (id) => {
@@ -98,7 +90,7 @@ export default function StoryLists() {
             <br />
             <Select
               name="author"
-              options={allAuthors.map((singleAuthor, index) => ({
+              options={authorList.map((singleAuthor, index) => ({
                 value: singleAuthor.id,
                 label: singleAuthor.username,
               }))}
@@ -144,3 +136,20 @@ export default function StoryLists() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    showStories: state.stories,
+    showUser: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadStories: (params, callback) => dispatch(loadStories(params, callback)),
+    loadCategories: (callback) => dispatch(loadCategories(callback)),
+    loadAuthors: (callback) => dispatch(loadAuthors(callback)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoryLists);

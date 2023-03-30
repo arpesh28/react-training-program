@@ -5,29 +5,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 //  Redux
-import { useDispatch, useSelector } from "react-redux";
-import { getUser, setLoading } from "../store/user";
+import { useDispatch, useSelector, connect } from "react-redux";
+import { getUser, setLoading, loadUser } from "../store/user";
 
-export default function Header({ page }) {
-  const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state.user.userDetails);
+function Header({ page, loadUser }) {
   useEffect(() => {
-    dispatch(setLoading(true));
-    axios({
-      method: "get",
-      url: `${process.env.REACT_APP_API_URL}users/me?populate=*`,
-      headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          dispatch(getUser(response.data));
-          dispatch(setLoading(false));
-        }
-      })
-      .catch((err) => {
-        console.log("error:", err);
-        dispatch(setLoading(false));
-      });
+    loadUser();
   }, []);
 
   const navigate = useNavigate();
@@ -76,3 +59,11 @@ export default function Header({ page }) {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadUser: () => dispatch(loadUser()),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Header);

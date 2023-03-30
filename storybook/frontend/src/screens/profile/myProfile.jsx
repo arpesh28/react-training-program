@@ -10,28 +10,25 @@ import Header from "../../components/header";
 import StoryCard from "../../components/storyCard";
 
 //  Redux
-import { useSelector } from "react-redux";
+import { useSelector, connect } from "react-redux";
+import { loadStories } from "../../store/stories";
 
-export default function MyProfile() {
+function MyProfile({ showUser, loadStories, showStories }) {
   const navigate = useNavigate();
-  const myData = useSelector((state) => state.user.userDetails);
-  const userLoading = useSelector((state) => state.user.loading);
-  // const [myData, setMyData] = useState(
-  //   JSON.parse(localStorage.getItem("user"))
-  // );
+  const { userDetails, loading } = showUser;
+  const { storyList } = showStories;
+
   const [myStories, setMyStories] = useState([]);
 
   useEffect(() => {
-    if (!userLoading) {
-      axios({
-        method: "get",
-        url: `${process.env.REACT_APP_API_URL}stories?populate=*&filters[author]=${myData?.id}`,
-        headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` },
-      }).then((response) => {
-        setMyStories(response.data.data);
-      });
+    if (!loading) {
+      const params = {
+        populate: "*",
+        "filters[author]": userDetails?.id,
+      };
+      loadStories(params, () => {});
     }
-  }, [userLoading]);
+  }, [loading]);
 
   const deleteStoryFromState = (id) => {
     const newStories = structuredClone(myStories);
@@ -49,17 +46,17 @@ export default function MyProfile() {
       <div className="user-details d-flex mt-5">
         <img
           src={
-            myData?.profilePicture
+            userDetails?.profilePicture
               ? process.env.REACT_APP_IMAGE_URL +
-                myData.profilePicture?.formats?.medium?.url
+                userDetails.profilePicture?.formats?.medium?.url
               : userIcon
           }
           alt=""
           className="mx-4"
         />
         <div>
-          <h4>{myData?.username}</h4>
-          <h4>{myData?.email}</h4>
+          <h4>{userDetails?.username}</h4>
+          <h4>{userDetails?.email}</h4>
           <button
             className="btn btn-primary"
             onClick={() => {
@@ -73,8 +70,8 @@ export default function MyProfile() {
       <div className="user-stories mt-5">
         <h4>My Stories</h4>
         <div className="row mt-2 gy-5">
-          {myStories.length > 0 ? (
-            myStories.map((story, index) => (
+          {storyList.length > 0 ? (
+            storyList.map((story, index) => (
               <StoryCard
                 story={story}
                 key={story.id}
@@ -91,3 +88,18 @@ export default function MyProfile() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    showUser: state.user,
+    showStories: state.stories,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadStories: (params, callback) => dispatch(loadStories(params, callback)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyProfile);
