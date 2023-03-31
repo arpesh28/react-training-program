@@ -46,7 +46,7 @@ class Order {
       !address ||
       !phone
     ) {
-      return res.json({ message: "All filled must be required" });
+      return res.status(400).json({ message: "All filled must be required" });
     } else {
       try {
         let newOrder = new orderModel({
@@ -62,7 +62,7 @@ class Order {
           return res.json({ success: "Order created successfully" });
         }
       } catch (err) {
-        return res.json({ error: error });
+        return res.status(400).json({ error: error });
       }
     }
   }
@@ -70,7 +70,7 @@ class Order {
   async postUpdateOrder(req, res) {
     let { oId, status } = req.body;
     if (!oId || !status) {
-      return res.json({ message: "All filled must be required" });
+      return res.status(400).json({ message: "All filled must be required" });
     } else {
       let currentOrder = orderModel.findByIdAndUpdate(oId, {
         status: status,

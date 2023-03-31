@@ -184,7 +184,7 @@ class Product {
   async getSingleProduct(req, res) {
     let { pId } = req.body;
     if (!pId) {
-      return res.json({ error: "All filled must be required" });
+      return res.status(400).json({ error: "All filled must be required" });
     } else {
       try {
         let singleProduct = await productModel

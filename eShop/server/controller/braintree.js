@@ -31,7 +31,7 @@ class brainTree {
       (err, result) => {
         if (err) {
           console.error(err);
-          return res.json(err);
+          return res.status(400).json(err);
         }
 
         if (result.success) {

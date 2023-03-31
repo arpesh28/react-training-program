@@ -24,7 +24,7 @@ class Category {
         if (err) {
           console.log(err);
         }
-        return res.json({ error: "All filled must be required" });
+        return res.status(400).json({ error: "All filled must be required" });
       });
     } else {
       cName = toTitleCase(cName);
@@ -35,7 +35,7 @@ class Category {
             if (err) {
               console.log(err);
             }
-            return res.json({ error: "Category already exists" });
+            return res.status(400).json({ error: "Category already exists" });
           });
         } else {
           let newCategory = new categoryModel({
@@ -59,7 +59,7 @@ class Category {
   async postEditCategory(req, res) {
     let { cId, cDescription, cStatus } = req.body;
     if (!cId || !cDescription || !cStatus) {
-      return res.json({ error: "All filled must be required" });
+      return res.status(400).json({ error: "All filled must be required" });
     }
     try {
       let editCategory = categoryModel.findByIdAndUpdate(cId, {
@@ -79,7 +79,7 @@ class Category {
   async getDeleteCategory(req, res) {
     let { cId } = req.body;
     if (!cId) {
-      return res.json({ error: "All filled must be required" });
+      return res.status(400).json({ error: "All filled must be required" });
     } else {
       try {
         let deletedCategoryFile = await categoryModel.findById(cId);
@@ -87,7 +87,7 @@ class Category {
 
         let deleteCategory = await categoryModel.findByIdAndDelete(cId);
         if (deleteCategory) {
-          // Delete Image from uploads -> categories folder 
+          // Delete Image from uploads -> categories folder
           fs.unlink(filePath, (err) => {
             if (err) {
               console.log(err);
