@@ -9,12 +9,17 @@ function CategoryGrid({ getMisc, loadCategories }) {
   useEffect(() => {
     loadCategories(() => {});
   }, []);
-  console.log("categoryList:", getMisc.categoryList);
+  console.log("loading:", getMisc.loading);
+
   return (
     <div className="d-flex mt-4">
-      {getMisc.categoryList?.map((cat, index) => (
-        <CategoryCard key={cat._id} category={cat} />
-      ))}
+      {getMisc.loading ? (
+        <h2>Loading...</h2>
+      ) : (
+        getMisc.categoryList?.map((cat, index) => (
+          <CategoryCard key={cat._id} category={cat} />
+        ))
+      )}
     </div>
   );
 }

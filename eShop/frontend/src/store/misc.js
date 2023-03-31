@@ -20,17 +20,17 @@ export const miscSlice = createSlice({
 });
 
 export const loadCategories = (callback) => async (dispatch) => {
-  setLoading(true);
+  dispatch(setLoading(true));
   try {
     const res = await axios.get(
       `${process.env.REACT_APP_API_URL}category/all-category`
     );
     dispatch(categoryReceived(res.data.Categories));
     callback(res);
-    setLoading(false);
+    dispatch(setLoading(false));
   } catch (err) {
     callback(err.response);
-    setLoading(false);
+    dispatch(setLoading(false));
   }
 };
 

@@ -13,3 +13,17 @@
   width: 100%;
   object-fit: cover;
 }
+.hover {
+  cursor: pointer;
+}
+.prod-cat {
+  opacity: 0.5;
+}
+.nav-btn-container {
+  right: 0;
+}
+.pass-icon {
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
