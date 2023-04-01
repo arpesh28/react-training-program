@@ -3,16 +3,21 @@ import React, { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
 //  Components
+import RegisterModal from "./onboarding/registerModal";
 import LoginModal from "./onboarding/loginModal";
 
 function Header() {
   const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   const toggleLogin = (e) => {
     if (e) e.preventDefault();
     setShowLogin(!showLogin);
   };
-
+  const toggleRegister = (e) => {
+    if (e) e.preventDefault();
+    setShowRegister(!showRegister);
+  };
   return (
     <>
       <Navbar>
@@ -29,7 +34,16 @@ function Header() {
           </Nav>
         </Container>
       </Navbar>
-      <LoginModal showModal={showLogin} toggleModal={toggleLogin} />
+      <LoginModal
+        showModal={showLogin}
+        toggleModal={toggleLogin}
+        toggleRegister={toggleRegister}
+      />
+      <RegisterModal
+        showModal={showRegister}
+        toggleModal={toggleRegister}
+        toggleLogin={toggleLogin}
+      />
     </>
   );
 }

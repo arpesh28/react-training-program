@@ -11,7 +11,6 @@ function ProductGrid({ getProducts, loadProducts }) {
   useEffect(() => {
     loadProducts(() => {});
   }, []);
-  console.log("products:", getProducts.productList);
   return (
     <div className="row gx-5 gy-5">
       {getProducts.productList.map((prod, index) => (

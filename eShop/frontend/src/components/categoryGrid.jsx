@@ -9,7 +9,6 @@ function CategoryGrid({ getMisc, loadCategories }) {
   useEffect(() => {
     loadCategories(() => {});
   }, []);
-  console.log("loading:", getMisc.loading);
 
   return (
     <div className="d-flex mt-4">

@@ -4,25 +4,40 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Joi, { callStack } from "joi-browser";
 import { connect } from "react-redux";
-import { login } from "../../store/auth";
+import { register } from "../../store/auth";
 
 import { handleSubmit } from "../../utils/validations";
 
-function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
+function RegisterModal({ showModal, toggleModal, register, toggleLogin }) {
   const [data, setData] = useState({
+    name: "",
     email: "",
     password: "",
+    cPassword: "",
   });
   const [showPass, setShowPass] = useState(false);
   const [errors, setErrors] = useState(null);
 
   const schema = {
+    name: Joi.string()
+      .required()
+      .error((errors) => {
+        errors.forEach((err) => {
+          switch (err?.type) {
+            case "any.empty": {
+              err.message = "Name is required";
+              break;
+            }
+          }
+        });
+        return errors;
+      }),
     email: Joi.string()
       .email()
       .required()
       .error((errors) => {
         errors.forEach((err) => {
-          switch (err.type) {
+          switch (err?.type) {
             case "string.email": {
               if (!err.context.value) err.message = "Email is required";
               else err.message = "Email is invalid";
@@ -41,7 +56,8 @@ function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
       .required()
       .error((errors) => {
         errors.forEach((err) => {
-          switch (err.type) {
+          console.log("err:", err);
+          switch (err?.type) {
             case "any.empty": {
               err.message = "Password is required";
               break;
@@ -55,6 +71,17 @@ function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
         });
         return errors;
       }),
+    cPassword: Joi.valid(Joi.ref("password")).error((errors) => {
+      errors.forEach((err) => {
+        switch (err.type) {
+          case "any.allowOnly":
+            err.message = "Password does not match";
+            break;
+          default:
+        }
+      });
+      return errors;
+    }),
   };
 
   const onChange = (event) => {
@@ -66,20 +93,36 @@ function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
     setData(newData);
   };
   const onSubmit = () => {
-    login(data, (res) => {
+    register(data, (res) => {
       if (res.status === 200) {
+        toggleLogin();
         toggleModal();
+      } else {
+        console.log("error:", res);
       }
     });
   };
-  console.log("data:", errors);
   return (
     <Modal show={showModal} onHide={toggleModal} centered size="lg">
       <Modal.Header closeButton>
-        <Modal.Title>Login</Modal.Title>
+        <Modal.Title>Register</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
+          {" "}
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              value={data?.name}
+              onChange={onChange}
+            />
+            {errors?.name && (
+              <Form.Text className="text-muted error">{errors?.name}</Form.Text>
+            )}
+          </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
@@ -95,7 +138,6 @@ function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
               </Form.Text>
             )}
           </Form.Group>
-
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <div className="position-relative">
@@ -117,8 +159,29 @@ function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
                 {errors?.password}
               </Form.Text>
             )}
+          </Form.Group>{" "}
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Confirm Password</Form.Label>
+            <div className="position-relative">
+              <Form.Control
+                type={showPass ? "text" : "password"}
+                name="cPassword"
+                placeholder="Enter Password Again"
+                value={data?.cPassword}
+                onChange={onChange}
+              />
+              <FontAwesomeIcon
+                icon={showPass ? faEyeSlash : faEye}
+                className="position-absolute pass-icon hover"
+                onClick={(e) => setShowPass(!showPass)}
+              />
+            </div>
+            {errors?.cPassword && (
+              <Form.Text className="text-muted error">
+                {errors?.cPassword}
+              </Form.Text>
+            )}
           </Form.Group>
-
           <Button
             variant="primary"
             type="submit"
@@ -128,17 +191,17 @@ function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
             }}
           >
             Submit
-          </Button>
+          </Button>{" "}
           <div>
-            Don't have an account?{" "}
+            Already have an account?{" "}
             <Button
               variant="link"
               onClick={(e) => {
-                toggleRegister(e);
+                toggleLogin(e);
                 toggleModal(e);
               }}
             >
-              Register
+              Login
             </Button>
           </div>
         </Form>
@@ -153,8 +216,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (data, callStack) => dispatch(login(data, callStack)),
+    register: (data, callback) => dispatch(register(data, callback)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterModal);
