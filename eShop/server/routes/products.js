@@ -14,17 +14,26 @@ var storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get("/all-product", productController.getAllProduct);
-router.get("/product-by-category", productController.getProductByCategory);
-router.get("/product-by-price", productController.getProductByPrice);
-router.post("/wish-product", productController.getWishProduct);
-router.post("/cart-product", productController.getCartProduct);
+//  Wishlist
+router.post("/wishlist", productController.addToWishList);
+router.get("/wishlist", productController.getMyWishlist);
+router.delete("/wishlist", productController.removeWishlistProduct);
 
+//  Cart
+router.post("/cart", productController.addToCart);
+router.get("/cart", productController.getMyCart);
+router.delete("/cart", productController.removeCartProduct);
+
+//  Product
 router.post("/add-product", upload.any(), productController.postAddProduct);
 router.put("/edit-product", upload.any(), productController.postEditProduct);
 router.delete("/delete-product", productController.getDeleteProduct);
-router.post("/single-product", productController.getSingleProduct);
+router.get("/single-product", productController.getSingleProduct);
+router.get("/all-product", productController.getAllProduct);
+router.get("/product-by-category", productController.getProductByCategory);
+router.get("/product-by-price", productController.getProductByPrice);
 
+//  Review
 router.post("/add-review", productController.postAddReview);
 router.delete("/delete-review", productController.deleteReview);
 

@@ -18,7 +18,7 @@ class User {
   }
 
   async getSingleUser(req, res) {
-    let { uId } = req.body;
+    let { uId } = req.query;
     if (!uId) {
       return res.json({ error: "All filled must be required" });
     } else {

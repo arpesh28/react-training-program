@@ -1,6 +1,8 @@
 const productModel = require("../models/products");
 const fs = require("fs");
 const path = require("path");
+const cartModel = require("../models/cart");
+const wishListModel = require("../models/wishlist");
 
 class Product {
   // Delete Image from uploads -> products folder
@@ -182,7 +184,7 @@ class Product {
   }
 
   async getSingleProduct(req, res) {
-    let { pId } = req.body;
+    let { pId } = req.query;
     if (!pId) {
       return res.status(400).json({ error: "All filled must be required" });
     } else {
@@ -237,42 +239,129 @@ class Product {
     }
   }
 
-  async getWishProduct(req, res) {
-    let { productArray } = req.body;
-    if (!productArray) {
+  //  Wishlist
+  async addToWishList(req, res) {
+    let { pId, uId } = req.body;
+    if (!pId) {
       return res.json({ error: "All filled must be required" });
     } else {
       try {
-        let wishProducts = await productModel.find({
-          _id: { $in: productArray },
+        let wishlistProduct = await productModel.find({
+          _id: pId,
         });
-        if (wishProducts) {
-          return res.json({ Products: wishProducts });
-        }
-      } catch (err) {
-        return res.json({ error: "Filter product wrong" });
-      }
-    }
-  }
-
-  async getCartProduct(req, res) {
-    let { productArray } = req.body;
-    if (!productArray) {
-      return res.json({ error: "All filled must be required" });
-    } else {
-      try {
-        let cartProducts = await productModel.find({
-          _id: { $in: productArray },
-        });
-        if (cartProducts) {
-          return res.json({ Products: cartProducts });
+        if (wishlistProduct) {
+          let newProduct = new wishListModel({
+            pId,
+            uId,
+          });
+          let save = await newProduct.save();
+          if (save) {
+            return res.json({ success: "Added to wishlist successfully" });
+          }
         }
       } catch (err) {
         return res.json({ error: "Cart product wrong" });
       }
     }
   }
+  async getMyWishlist(req, res) {
+    let { uId } = req.query;
+    if (!uId) {
+      return res.json({ error: "All filled must be required" });
+    } else {
+      try {
+        let products = await wishListModel.find({ uId: uId });
 
+        if (products) {
+          return res.json({ wishList: products });
+        }
+      } catch (err) {
+        return res.json({ error: "Wishlist is empty." });
+      }
+    }
+  }
+  async removeWishlistProduct(req, res) {
+    let { wId } = req.body;
+    if (!wId) {
+      return res.json({ message: "All filled must be required" });
+    } else {
+      try {
+        let wishlistDelete = wishListModel.findOneAndDelete(wId);
+        wishlistDelete.exec((err, result) => {
+          if (err) {
+            console.log(err);
+          }
+          return res.json({ success: "Product removed from wishlist" });
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
+  //  Cart
+  async addToCart(req, res) {
+    let { pId, pQuantity, uId } = req.body;
+    if (!pId) {
+      return res.json({ error: "All filled must be required" });
+    } else {
+      try {
+        let cartProduct = await productModel.find({
+          _id: pId,
+        });
+        if (cartProduct) {
+          let newProduct = new cartModel({
+            pId,
+            pQuantity,
+            uId,
+          });
+          let save = await newProduct.save();
+          if (save) {
+            return res.json({ success: "Added to cart created successfully" });
+          }
+        }
+      } catch (err) {
+        return res.json({ error: "Cart product wrong" });
+      }
+    }
+  }
+  async getMyCart(req, res) {
+    let { uId } = req.query;
+    console.log("uid:", uId);
+    if (!uId) {
+      return res.json({ error: "All filled must be required" });
+    } else {
+      try {
+        let products = await cartModel.find({ uId: uId });
+
+        if (products) {
+          return res.json({ cartProducts: products });
+        }
+      } catch (err) {
+        console.log("error==>", err);
+        return res.json({ error: "Cart is empty." });
+      }
+    }
+  }
+  async removeCartProduct(req, res) {
+    let { cId } = req.body;
+    if (!cId) {
+      return res.json({ message: "All filled must be required" });
+    } else {
+      try {
+        let cartDelete = cartModel.findOneAndDelete(cId);
+        cartDelete.exec((err, result) => {
+          if (err) {
+            console.log(err);
+          }
+          return res.json({ success: "Product removed from cart" });
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+  //  Review
   async postAddReview(req, res) {
     let { pId, uId, rating, review } = req.body;
     if (!pId || !rating || !review || !uId) {
