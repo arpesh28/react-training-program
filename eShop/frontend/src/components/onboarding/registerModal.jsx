@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import Joi, { callStack } from "joi-browser";
+import Joi from "joi-browser";
 import { connect } from "react-redux";
 import { register } from "../../store/auth";
 

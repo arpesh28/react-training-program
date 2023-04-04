@@ -34,5 +34,39 @@ export const loadCategories = (callback) => async (dispatch) => {
   }
 };
 
+export const addCategory = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}category/add-category`,
+      data,
+      {
+        headers: {
+          token: localStorage.getItem("x-auth-token"),
+        },
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+
+export const deleteCategory = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_API_URL}category/delete-category`,
+      {
+        headers: {
+          token: localStorage.getItem("x-auth-token"),
+        },
+        data,
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+
 export const { categoryReceived, setLoading } = miscSlice.actions;
 export default miscSlice.reducer;

@@ -22,6 +22,9 @@
 .nav-btn-container {
   right: 0;
 }
+.error-select {
+  border: 2px solid red;
+}
 .pass-icon {
   right: 30px;
   top: 50%;
