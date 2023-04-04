@@ -203,7 +203,7 @@ class Product {
   }
 
   async getProductByCategory(req, res) {
-    let { catId } = req.body;
+    let { catId } = req.query;
     if (!catId) {
       return res.json({ error: "All filled must be required" });
     } else {

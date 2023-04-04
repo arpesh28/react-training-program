@@ -56,7 +56,6 @@ function RegisterModal({ showModal, toggleModal, register, toggleLogin }) {
       .required()
       .error((errors) => {
         errors.forEach((err) => {
-          console.log("err:", err);
           switch (err?.type) {
             case "any.empty": {
               err.message = "Password is required";

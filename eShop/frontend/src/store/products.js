@@ -38,7 +38,22 @@ export const loadProducts = (callback) => async (dispatch) => {
     dispatch(setLoading(false));
   }
 };
-
+export const loadProductByCategory = (params, callback) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}product/product-by-category`,
+      { params }
+    );
+    console.log("response:", res);
+    dispatch(productReceived(res.data.Products));
+    callback(res);
+    dispatch(setLoading(false));
+  } catch (err) {
+    callback(err.response);
+    dispatch(setLoading(false));
+  }
+};
 export const loadSingleProduct = (data, callback) => async (dispatch) => {
   dispatch(setLoading(true));
   try {

@@ -22,6 +22,7 @@ export const login = (data, callback) => async (dispatch) => {
       data
     );
     localStorage.setItem("x-auth-token", res.data.token);
+    localStorage.setItem("user", JSON.stringify(res.data.user));
     callback(res);
     dispatch(setLoading(false));
   } catch (err) {
