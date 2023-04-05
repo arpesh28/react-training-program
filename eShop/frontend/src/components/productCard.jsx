@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 //  Images
-import productImage from "../include/images/product.jpg";
 
 function ProductCard({ product }) {
   const navigate = useNavigate();

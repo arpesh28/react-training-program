@@ -1,7 +1,6 @@
 import React from "react";
 
 //  Images
-import catImage from "../include/images/category.jpeg";
 
 function CategoryCard({ category, filterProductByCategory }) {
   return (

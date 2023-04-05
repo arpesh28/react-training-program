@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import LoadingBar from "react-top-loading-bar";
 
 //  Components
-import Header from "../../../components/header";
+import Header from "components/header";
 import { connect } from "react-redux";
 
 function UserDetails({ getUser }) {

@@ -1,13 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { connect } from "react-redux";
-import { loadCategories, deleteCategory } from "../../../store/misc";
+import { loadCategories, deleteCategory } from "store/misc";
 
-import Header from "../../../components/header";
+import Header from "components/header";
 import { Button, Card } from "react-bootstrap";
 import AddCatModal from "./addCatModal";
 
-import Alert from "../../../components/alert";
+import Alert from "components/alert";
 
 function Categories({ loadCategories, getMisc, deleteCategory }) {
   const loadingRef = useRef(null);
@@ -16,13 +16,23 @@ function Categories({ loadCategories, getMisc, deleteCategory }) {
   const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState(false);
   const [deleteId, setDeleteId] = useState("");
+  const [editData, setEditData] = useState(null);
 
   useEffect(() => {
     loadCategories(() => {});
   }, []);
 
+  useEffect(() => {
+    if (editData) {
+      toggleAddCategory();
+    }
+  }, [editData]);
+
   const toggleAddCategory = (e) => {
     if (e) e.preventDefault();
+    if (showAddCatModal) {
+      setEditData(null);
+    }
     setShowAddCatModal(!showAddCatModal);
   };
 
@@ -65,7 +75,14 @@ function Categories({ loadCategories, getMisc, deleteCategory }) {
                   <Card.Text>{cat.cDescription}</Card.Text>
                 </Card.Body>{" "}
                 <Card.Footer>
-                  <Button variant="primary" className="mx-2">
+                  <Button
+                    variant="primary"
+                    className="mx-2"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setEditData(cat);
+                    }}
+                  >
                     Edit
                   </Button>
                   <Button
@@ -96,6 +113,7 @@ function Categories({ loadCategories, getMisc, deleteCategory }) {
       <AddCatModal
         showModal={showAddCatModal}
         toggleModal={toggleAddCategory}
+        editData={editData}
       />
     </>
   );

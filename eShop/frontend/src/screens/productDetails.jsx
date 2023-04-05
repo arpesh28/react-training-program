@@ -2,11 +2,11 @@ import React, { useRef, useEffect } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadSingleProduct } from "../store/products";
+import { loadSingleProduct } from "store/products";
 import Slider from "react-slick";
 
 //  Components
-import Header from "../components/header";
+import Header from "components/header";
 
 function ProductDetails({ getProducts, loadSingleProduct }) {
   const { id } = useParams();

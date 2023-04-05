@@ -51,6 +51,23 @@ export const addCategory = (data, callback) => async (dispatch) => {
   }
 };
 
+export const editCategory = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      `${process.env.REACT_APP_API_URL}category/edit-category`,
+      data,
+      {
+        headers: {
+          token: localStorage.getItem("x-auth-token"),
+        },
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+
 export const deleteCategory = (data, callback) => async (dispatch) => {
   try {
     const res = await axios.delete(

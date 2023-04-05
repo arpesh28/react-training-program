@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import CategoryCard from "./categoryCard";
 
 //  Redux
-import { loadCategories } from "../store/misc";
-import { loadProductByCategory } from "../store/products";
+import { loadCategories } from "store/misc";
+import { loadProductByCategory } from "store/products";
 import { connect } from "react-redux";
 
 function CategoryGrid({ getMisc, loadCategories, loadProductByCategory }) {

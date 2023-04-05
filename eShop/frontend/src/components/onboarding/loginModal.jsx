@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Joi, { callStack } from "joi-browser";
 import { connect } from "react-redux";
-import { login } from "../../store/auth";
+import { login } from "store/auth";
 
-import { handleSubmit } from "../../utils/validations";
+import { handleSubmit } from "utils/validations";
 
 function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
   const [data, setData] = useState({

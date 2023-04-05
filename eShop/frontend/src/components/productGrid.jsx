@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import ProductCard from "./productCard";
 
 //  Redux
-import { loadProducts } from "../store/products";
+import { loadProducts } from "store/products";
 import { connect } from "react-redux";
 
 function ProductGrid({ getProducts, loadProducts }) {

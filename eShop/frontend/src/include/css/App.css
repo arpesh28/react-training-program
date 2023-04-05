@@ -33,3 +33,7 @@
 .error {
   color: red !important;
 }
+.preview-image img {
+  width: 15rem !important;
+  margin-top: 10px !important;
+}

@@ -3,9 +3,9 @@ import LoadingBar from "react-top-loading-bar";
 import { connect } from "react-redux";
 
 //  Components
-import Header from "../components/header";
-import CategoryGrid from "../components/categoryGrid";
-import ProductGrid from "../components/productGrid";
+import Header from "components/header";
+import CategoryGrid from "components/categoryGrid";
+import ProductGrid from "components/productGrid";
 
 function HomeScreen({ getProducts }) {
   const loadingRef = useRef(null);

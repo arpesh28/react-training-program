@@ -32,7 +32,7 @@ function Header({ loadUser }) {
     <>
       <Navbar>
         <Container>
-          <Navbar.Brand href="#home">Eshop</Navbar.Brand>
+          <Navbar.Brand href="/">Eshop</Navbar.Brand>
           <Nav className="me-auto w-100 position-relative">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#features">Products</Nav.Link>
@@ -49,7 +49,7 @@ function Header({ loadUser }) {
 
                 <Dropdown.Menu>
                   <Dropdown.Item href="/user-details">User</Dropdown.Item>
-                  <Dropdown.Item href="#/action-1">Products</Dropdown.Item>
+                  <Dropdown.Item href="/products">Products</Dropdown.Item>
                   <Dropdown.Item href="/categories">Categories</Dropdown.Item>
                   <Dropdown.Item href="#/action-3">Orders</Dropdown.Item>
                 </Dropdown.Menu>
