@@ -1,28 +1,62 @@
 import React, { useEffect, useRef, useState } from "react";
 import LoadingBar from "react-top-loading-bar";
 import { connect } from "react-redux";
-import { loadProducts } from "store/products";
+import { loadProducts, deleteProduct } from "store/products";
 
 //  Components
 import { Button, Card } from "react-bootstrap";
 import Header from "components/header";
 import AddProductModal from "./addProductModal";
+import Alert from "components/alert";
 
-function ProductListing({ loadProducts, getProducts }) {
+function ProductListing({ loadProducts, getProducts, deleteProduct }) {
   const loadingRef = useRef(null);
 
+  //  States
+  const [deleteId, setDeleteId] = useState("");
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showDeleteModal, setDeleteModal] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
+  const [editData, setEditData] = useState(null);
 
   useEffect(() => {
-    loadingRef.current.continuousStart();
-    loadProducts(() => {
-      loadingRef.current.complete();
-    });
+    loadProducts(() => {});
   }, []);
+
+  useEffect(() => {
+    if (editData) {
+      toggleAddModal();
+    }
+  }, editData);
+
+  useEffect(() => {
+    if (getProducts.loading) {
+      loadingRef.current.continuousStart();
+    } else {
+      loadingRef.current.complete();
+    }
+  }, [getProducts.loading]);
 
   const toggleAddModal = (e) => {
     if (e) e.preventDefault();
     setShowAddModal(!showAddModal);
+  };
+
+  const toggleDeleteModal = (e) => {
+    if (e) e.preventDefault();
+    setDeleteModal(!showDeleteModal);
+  };
+
+  const handleDelete = (e) => {
+    if (e) e.preventDefault();
+    setLoadingDelete(true);
+    deleteProduct({ pId: deleteId }, (res) => {
+      setLoadingDelete(false);
+      if (res.status === 200) {
+        toggleDeleteModal();
+        loadProducts(() => {});
+      }
+    });
   };
 
   return (
@@ -60,14 +94,16 @@ function ProductListing({ loadProducts, getProducts }) {
                     className="mx-2"
                     onClick={(e) => {
                       e.preventDefault();
+                      setEditData(product);
                     }}
                   >
                     Edit
                   </Button>
                   <Button
                     variant="danger"
-                    onClick={() => {
-                      //   setShowAlert(true);
+                    onClick={(e) => {
+                      setDeleteId(product._id);
+                      toggleDeleteModal(e);
                     }}
                   >
                     Delete
@@ -78,7 +114,20 @@ function ProductListing({ loadProducts, getProducts }) {
           ))}
         </div>
       </div>
-      <AddProductModal showModal={showAddModal} toggleModal={toggleAddModal} />
+      <AddProductModal
+        showModal={showAddModal}
+        toggleModal={toggleAddModal}
+        loadProducts={loadProducts}
+        editData={editData}
+      />
+      <Alert
+        toggleModal={toggleDeleteModal}
+        showModal={showDeleteModal}
+        message="Are you sure you want to delete this product?"
+        confirmButtonName="Delete"
+        handleSubmit={handleDelete}
+        loading={loadingDelete}
+      />
     </>
   );
 }
@@ -92,6 +141,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadProducts: (callback) => dispatch(loadProducts(callback)),
+    deleteProduct: (data, callback) => dispatch(deleteProduct(data, callback)),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ProductListing);

@@ -1,12 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import Select from "react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import Joi from "joi-browser";
+import { handleSubmit } from "utils/validations";
+import { connect } from "react-redux";
 
-import { addProduct } from "store/products";
+import { addProduct, editProduct } from "store/products";
+import { loadCategories } from "store/misc";
 
-function AddProductModal({ showModal, toggleModal }) {
+function AddProductModal({
+  showModal,
+  toggleModal,
+  addProduct,
+  loadProducts,
+  loadCategories,
+  getMisc,
+  editProduct,
+  editData,
+}) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     pName: "",
@@ -21,14 +34,199 @@ function AddProductModal({ showModal, toggleModal }) {
   });
   const [errors, setErrors] = useState({});
   const onChange = (e) => {
+    const newErrors = structuredClone(errors);
+    delete newErrors[e.target.name];
+    setErrors(newErrors);
     setData({ ...data, [e.target.name]: e.target.value });
   };
   const onChangeSelect = (e) => {
+    const newErrors = structuredClone(errors);
+    delete newErrors[e.name];
+    setErrors(newErrors);
     setData({ ...data, [e.name]: e.newVal });
   };
   const onChangeImage = (e) => {
+    const newErrors = structuredClone(errors);
+    delete newErrors[e.target.name];
+    setErrors(newErrors);
     setData({ ...data, [e.target.name]: e.target.files[0] });
   };
+
+  const schema = {
+    pName: Joi.string()
+      .required()
+      .error((errors) => {
+        errors.forEach((err) => {
+          switch (err.type) {
+            case "any.empty": {
+              err.message = "Name is required";
+            }
+          }
+        });
+        return errors;
+      }),
+    pDescription: Joi.string()
+      .required()
+      .error((errors) => {
+        errors.forEach((err) => {
+          switch (err.type) {
+            case "any.empty": {
+              err.message = "Description is required";
+            }
+          }
+        });
+        return errors;
+      }),
+    pStatus: Joi.object({
+      label: Joi.string().allow(""),
+      value: Joi.string()
+        .required()
+        .error((errors) => {
+          errors.forEach((err) => {
+            switch (err.type) {
+              case "any.required": {
+                err.message = "Status is required";
+              }
+            }
+          });
+          return errors;
+        }),
+    }),
+    pCategory: Joi.object({
+      label: Joi.string().allow(""),
+      value: Joi.string()
+        .required()
+        .error((errors) => {
+          errors.forEach((err) => {
+            switch (err.type) {
+              case "any.required": {
+                err.message = "Category is required";
+              }
+            }
+          });
+          return errors;
+        }),
+    }),
+    pQuantity: Joi.string()
+      .required()
+      .error((errors) => {
+        errors.forEach((err) => {
+          switch (err.type) {
+            case "any.empty": {
+              err.message = "Quantity is required";
+            }
+          }
+        });
+        return errors;
+      }),
+    pPrice: Joi.string()
+      .required()
+      .error((errors) => {
+        errors.forEach((err) => {
+          switch (err.type) {
+            case "any.empty": {
+              err.message = "Price is required";
+            }
+          }
+        });
+        return errors;
+      }),
+    pOffer: Joi.string()
+      .required()
+      .error((errors) => {
+        errors.forEach((err) => {
+          switch (err.type) {
+            case "any.empty": {
+              err.message = "Offer is required";
+            }
+          }
+        });
+        return errors;
+      }),
+    pImage1: Joi.object()
+      .required()
+      .error((errors) => {
+        errors.forEach((err) => {
+          switch (err.type) {
+            case "object.base": {
+              err.message = "Image is required";
+            }
+          }
+        });
+        return errors;
+      }),
+    pImage2: Joi.object()
+      .required()
+      .error((errors) => {
+        errors.forEach((err) => {
+          switch (err.type) {
+            case "object.base": {
+              err.message = "Image is required";
+            }
+          }
+        });
+        return errors;
+      }),
+  };
+  const onSubmit = () => {
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("pName", data.pName);
+    formData.append("pDescription", data.pDescription);
+    formData.append("pQuantity", parseInt(data.pQuantity));
+    formData.append("pPrice", parseInt(data.pPrice));
+    formData.append("pOffer", parseInt(data.pOffer));
+    formData.append("pStatus", data.pStatus?.value);
+    formData.append("pCategory", data.pCategory?.value);
+    if (editData) {
+      formData.append("pImages", data.pImage1 + "," + data.pImage2);
+      formData.append("pId", editData.pId);
+      editProduct(formData, (res) => {
+        setLoading(false);
+        if (res.status === 200) {
+          loadProducts();
+          toggleModal();
+        }
+      });
+    } else {
+      formData.append("pImage", data.pImage1);
+      formData.append("pImage", data.pImage2);
+      addProduct(formData, (res) => {
+        setLoading(false);
+        if (res.status === 200) {
+          loadProducts();
+          toggleModal();
+        }
+      });
+    }
+  };
+  useEffect(() => {
+    if (showModal) {
+      loadCategories(() => {});
+    }
+  }, [showModal]);
+  useEffect(() => {
+    if (editData) {
+      setData({
+        pName: editData.pName,
+        pDescription: editData.pDescription,
+        pStatus: {
+          value: editData.pStatus,
+          label: editData.pStatus,
+        },
+        pCategory: {
+          value: editData.pCategory?._id,
+          label: editData.pCategory?.cName,
+        },
+        pQuantity: `${editData.pQuantity}`,
+        pPrice: `${editData.pPrice}`,
+        pOffer: editData.pOffer,
+        pImage1: { imageUrl: editData.pImages[0] },
+        pImage2: { imageUrl: editData.pImages[1] },
+      });
+    }
+  }, [editData]);
+
   return (
     <Modal show={showModal} onHide={toggleModal} centered size="lg">
       <Modal.Header closeButton>
@@ -45,11 +243,11 @@ function AddProductModal({ showModal, toggleModal }) {
               value={data.pName}
               onChange={onChange}
             />
-            {/* {errors?.cName && (
-                <Form.Text className="text-muted error">
-                  {errors?.cName}
-                </Form.Text>
-              )} */}
+            {errors?.pName && (
+              <Form.Text className="text-muted error">
+                {errors?.pName}
+              </Form.Text>
+            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Description</Form.Label>
@@ -61,11 +259,11 @@ function AddProductModal({ showModal, toggleModal }) {
               value={data.pDescription}
               onChange={onChange}
             />
-            {/* {errors?.cDescription && (
+            {errors?.pDescription && (
               <Form.Text className="text-muted error">
-                {errors?.cDescription}
+                {errors?.pDescription}
               </Form.Text>
-            )} */}
+            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Status</Form.Label>
@@ -82,32 +280,32 @@ function AddProductModal({ showModal, toggleModal }) {
               value={data.pStatus}
               className={errors?.pStatus && "error-select"}
             />
-            {/* {errors?.cStatus && (
+            {errors?.pStatus && (
               <Form.Text className="text-muted error">
-                {errors?.cStatus}
+                {errors?.pStatus}
               </Form.Text>
-            )} */}
+            )}
           </Form.Group>{" "}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Category</Form.Label>
             <Select
               name="pCategory"
-              options={[
-                { value: "Active", label: "Active" },
-                { value: "Disabled", label: "Disabled" },
-              ]}
+              options={getMisc?.categoryList?.map((cat) => ({
+                value: cat._id,
+                label: cat.cName,
+              }))}
               classNamePrefix="select"
               onChange={(e) => {
                 onChangeSelect({ newVal: e, name: "pCategory" });
               }}
               //   value={data.cStatus}
-              className={errors?.cStatus && "error-select"}
+              className={errors?.pCategory && "error-select"}
             />
-            {/* {errors?.cStatus && (
+            {errors?.pCategory && (
               <Form.Text className="text-muted error">
-                {errors?.cStatus}
+                {errors?.pCategory}
               </Form.Text>
-            )} */}
+            )}
           </Form.Group>{" "}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Quantity</Form.Label>
@@ -118,11 +316,11 @@ function AddProductModal({ showModal, toggleModal }) {
               value={data.pQuantity}
               onChange={onChange}
             />
-            {/* {errors?.cDescription && (
+            {errors?.pQuantity && (
               <Form.Text className="text-muted error">
-                {errors?.cDescription}
+                {errors?.pQuantity}
               </Form.Text>
-            )} */}
+            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Price</Form.Label>
@@ -133,11 +331,11 @@ function AddProductModal({ showModal, toggleModal }) {
               value={data.pPrice}
               onChange={onChange}
             />
-            {/* {errors?.cDescription && (
+            {errors?.pPrice && (
               <Form.Text className="text-muted error">
-                {errors?.cDescription}
+                {errors?.pPrice}
               </Form.Text>
-            )} */}
+            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Offer</Form.Label>
@@ -148,49 +346,89 @@ function AddProductModal({ showModal, toggleModal }) {
               value={data.pOffer}
               onChange={onChange}
             />
-            {/* {errors?.cDescription && (
+            {errors?.pOffer && (
               <Form.Text className="text-muted error">
-                {errors?.cDescription}
+                {errors?.pOffer}
               </Form.Text>
-            )} */}
+            )}
           </Form.Group>
           <div className="d-flex justify-space-between">
             {" "}
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Image 1</Form.Label>
-              <Form.Control
-                type="file"
-                name="pImage1"
-                onChange={onChangeImage}
-              />
-              {/* {errors?.cImage && (
-                  <Form.Text className="text-muted error">
-                    {errors?.cImage}
-                  </Form.Text>
-                )} */}
+              {!editData && (
+                <Form.Control
+                  type="file"
+                  name="pImage1"
+                  onChange={onChangeImage}
+                />
+              )}
+              {errors?.pImage1 && (
+                <Form.Text className="text-muted error">
+                  {errors?.pImage1}
+                </Form.Text>
+              )}
+              {data.pImage1 &&
+                (editData ? (
+                  <img
+                    className="add-product-img"
+                    src={
+                      process.env.REACT_APP_IMAGE_URL +
+                      "products/" +
+                      data.pImage1.imageUrl
+                    }
+                    alt=""
+                  />
+                ) : (
+                  <img
+                    className="add-product-img"
+                    src={URL.createObjectURL(data.pImage1)}
+                    alt=""
+                  />
+                ))}
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Image 2</Form.Label>
-              <Form.Control
-                type="file"
-                name="pImage2"
-                onChange={onChangeImage}
-              />
-              {/* {errors?.cImage && (
-                  <Form.Text className="text-muted error">
-                    {errors?.cImage}
-                  </Form.Text>
-                )} */}
+              {!editData && (
+                <Form.Control
+                  type="file"
+                  name="pImage2"
+                  onChange={onChangeImage}
+                />
+              )}
+              {errors?.pImage2 && (
+                <Form.Text className="text-muted error">
+                  {errors?.pImage2}
+                </Form.Text>
+              )}
+              {data.pImage2 &&
+                (editData ? (
+                  <img
+                    className="add-product-img"
+                    src={
+                      process.env.REACT_APP_IMAGE_URL +
+                      "products/" +
+                      data.pImage2.imageUrl
+                    }
+                    alt=""
+                  />
+                ) : (
+                  <img
+                    className="add-product-img"
+                    src={URL.createObjectURL(data.pImage2)}
+                    alt=""
+                  />
+                ))}
             </Form.Group>
           </div>
           <Button
             variant="primary"
             type="submit"
             disabled={loading}
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   handleSubmit(data, schema, setErrors, onSubmit);
-            // }}
+            onClick={(e) => {
+              e.preventDefault();
+              handleSubmit(data, schema, setErrors, onSubmit);
+            }}
           >
             {loading ? (
               <FontAwesomeIcon className="fa-spin" icon={faSpinner} />
@@ -204,4 +442,18 @@ function AddProductModal({ showModal, toggleModal }) {
   );
 }
 
-export default AddProductModal;
+const mapStateToProps = (state) => {
+  return {
+    getMisc: state.misc,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProduct: (data, callback) => dispatch(addProduct(data, callback)),
+    loadCategories: (callback) => dispatch(loadCategories(callback)),
+    editProduct: (data, callback) => dispatch(editProduct(data, callback)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddProductModal);

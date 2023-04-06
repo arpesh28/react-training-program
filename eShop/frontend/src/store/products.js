@@ -81,6 +81,34 @@ export const addProduct = (data, callback) => async (dispatch) => {
     callback(err.response);
   }
 };
+export const editProduct = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      `${process.env.REACT_APP_API_URL}product/edit-product`,
+      data
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+
+export const deleteProduct = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_API_URL}product/delete-product`,
+      {
+        headers: {
+          token: localStorage.getItem("x-auth-token"),
+        },
+        data,
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
 
 export const { productReceived, setLoading, singleProductReceived } =
   productSlice.actions;
