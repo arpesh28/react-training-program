@@ -41,3 +41,10 @@
   width: 15rem;
   margin-top: 10px;
 }
+.prod-img-container .icons-container {
+  bottom: 20px;
+  right: 0;
+}
+.heart-header {
+  height: 25px;
+}

@@ -3,7 +3,7 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const wishListSchema = new mongoose.Schema(
   {
-    pId: {
+    product: {
       type: ObjectId,
       ref: "products",
     },

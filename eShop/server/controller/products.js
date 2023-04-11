@@ -251,7 +251,7 @@ class Product {
         });
         if (wishlistProduct) {
           let newProduct = new wishListModel({
-            pId,
+            product: pId,
             uId,
           });
           let save = await newProduct.save();
@@ -270,8 +270,9 @@ class Product {
       return res.json({ error: "All filled must be required" });
     } else {
       try {
-        let products = await wishListModel.find({ uId: uId });
-
+        let products = await wishListModel
+          .find({ uId: uId })
+          .populate("product");
         if (products) {
           return res.json({ wishList: products });
         }
@@ -311,7 +312,7 @@ class Product {
         });
         if (cartProduct) {
           let newProduct = new cartModel({
-            pId,
+            product: pId,
             pQuantity,
             uId,
           });
@@ -332,8 +333,7 @@ class Product {
       return res.json({ error: "All filled must be required" });
     } else {
       try {
-        let products = await cartModel.find({ uId: uId });
-
+        let products = await cartModel.find({ uId: uId }).populate("product");
         if (products) {
           return res.json({ cartProducts: products });
         }

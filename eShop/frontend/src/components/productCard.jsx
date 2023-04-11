@@ -1,20 +1,50 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import {
+  faHeart as faHeart2,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { addToWishlist, loadWishlist } from "store/misc";
+import { connect } from "react-redux";
 
 //  Images
 
-function ProductCard({ product }) {
+function ProductCard({ product, addToWishlist }) {
   const navigate = useNavigate();
   return (
     <div className="product-card mt-3 ">
-      <img
-        src={process.env.REACT_APP_IMAGE_URL + "products/" + product.pImages[0]}
-        alt=""
-        className="hover"
-        onClick={(e) => {
-          navigate(`/product/${product._id}`);
-        }}
-      />
+      <div className="prod-img-container position-relative">
+        <img
+          src={
+            process.env.REACT_APP_IMAGE_URL + "products/" + product.pImages[0]
+          }
+          alt=""
+          className="hover"
+          onClick={(e) => {
+            navigate(`/product/${product._id}`);
+          }}
+        />
+        <div className="position-absolute  d-flex align-items-center icons-container">
+          <FontAwesomeIcon
+            className=" hover"
+            icon={faHeart}
+            onClick={(e) => {
+              const payLoad = {
+                uId: JSON.parse(localStorage.getItem("user"))._id,
+                pId: product._id,
+              };
+              addToWishlist(payLoad, (res) => {
+                alert("Your product is added to wishlist");
+              });
+            }}
+          />{" "}
+          <FontAwesomeIcon className="mx-4 hover" icon={faShoppingCart} />
+        </div>
+      </div>
+
       <div className="product-content ">
         <h3
           className="hover"
@@ -34,4 +64,10 @@ function ProductCard({ product }) {
   );
 }
 
-export default ProductCard;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToWishlist: (data, callback) => dispatch(addToWishlist(data, callback)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ProductCard);

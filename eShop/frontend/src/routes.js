@@ -8,8 +8,9 @@ import ProductDetails from "screens/productDetails";
 //  User Routes
 import UserDetails from "screens/admin/user/userDetails";
 
-//  Category Routes
+//  Misc Routes
 import CategoryListing from "screens/admin/categories/categories";
+import Wishlist from "screens/wishlist";
 
 //  Product Routes
 import ProductListing from "screens/admin/products/productListing";
@@ -24,8 +25,9 @@ function App() {
         {/* User Routes */}
         <Route exact path="/user-details" element={<UserDetails />} />
 
-        {/* Category Routes */}
+        {/* Misc Routes */}
         <Route exact path="/categories" element={<CategoryListing />} />
+        <Route exact path="/wish-list" element={<Wishlist />} />
 
         {/* Products Routes */}
         <Route exact path="/products" element={<ProductListing />} />

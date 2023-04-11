@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 
+import { useNavigate } from "react-router-dom";
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
 import { loadUser } from "../store/user";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 //  Components
 import RegisterModal from "./onboarding/registerModal";
 import LoginModal from "./onboarding/loginModal";
 
 function Header({ loadUser }) {
+  const navigate = useNavigate();
+
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
@@ -36,7 +41,12 @@ function Header({ loadUser }) {
           <Nav className="me-auto w-100 position-relative">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="#features">Products</Nav.Link>
-            <div className="position-absolute nav-btn-container">
+            <div className="d-flex align-items-center position-absolute nav-btn-container">
+              <FontAwesomeIcon
+                className="heart-header hover mx-5"
+                icon={faHeart}
+                onClick={(e) => navigate("/wish-list")}
+              />{" "}
               {!localStorage.getItem("x-auth-token") && (
                 <button className="btn btn-primary" onClick={toggleLogin}>
                   Login
