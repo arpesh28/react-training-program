@@ -48,3 +48,16 @@
 .heart-header {
   height: 25px;
 }
+.prod-image {
+  height: 100px;
+}
+.wishlist-item {
+  background: #f2f2f2;
+  padding: 10px;
+  border-radius: 10px;
+}
+.review-item {
+  background: #f4f6ff;
+  padding: 20px 10px;
+  border-radius: 10px;
+}

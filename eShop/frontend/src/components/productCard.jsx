@@ -7,12 +7,13 @@ import {
   faShoppingCart,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { addToWishlist, loadWishlist } from "store/misc";
+import { addToWishlist, addToCart } from "store/misc";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 
 //  Images
 
-function ProductCard({ product, addToWishlist }) {
+function ProductCard({ product, addToWishlist, addToCart }) {
   const navigate = useNavigate();
   return (
     <div className="product-card mt-3 ">
@@ -41,7 +42,22 @@ function ProductCard({ product, addToWishlist }) {
               });
             }}
           />{" "}
-          <FontAwesomeIcon className="mx-4 hover" icon={faShoppingCart} />
+          <FontAwesomeIcon
+            className="mx-4 hover"
+            onClick={(e) => {
+              const payLoad = {
+                uId: JSON.parse(localStorage.getItem("user"))._id,
+                pId: product._id,
+                pQuantity: 1,
+              };
+              addToCart(payLoad, (res) => {
+                if (res.status === 200) {
+                  toast.success("Product added to cart.");
+                }
+              });
+            }}
+            icon={faShoppingCart}
+          />
         </div>
       </div>
 
@@ -67,6 +83,7 @@ function ProductCard({ product, addToWishlist }) {
 const mapDispatchToProps = (dispatch) => {
   return {
     addToWishlist: (data, callback) => dispatch(addToWishlist(data, callback)),
+    addToCart: (data, callback) => dispatch(addToCart(data, callback)),
   };
 };
 

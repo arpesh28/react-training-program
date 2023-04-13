@@ -7,6 +7,7 @@ export const miscSlice = createSlice({
     categoryList: [],
     loading: false,
     wishlist: [],
+    cart: [],
   },
   reducers: {
     categoryReceived: (state, action) => {
@@ -19,6 +20,10 @@ export const miscSlice = createSlice({
     },
     wishlistReceived: (state, action) => {
       state.wishlist = action.payload;
+      return state;
+    },
+    cartReceived: (state, action) => {
+      state.cart = action.payload;
       return state;
     },
   },
@@ -118,7 +123,6 @@ export const addToWishlist = (data, callback) => async (dispatch) => {
   }
 };
 export const removeWishlist = (data, callback) => async (dispatch) => {
-  console.log("data:", data);
   try {
     const res = await axios.delete(
       `${process.env.REACT_APP_API_URL}product/wishlist`,
@@ -132,6 +136,72 @@ export const removeWishlist = (data, callback) => async (dispatch) => {
   }
 };
 
-export const { categoryReceived, setLoading, wishlistReceived } =
+//  Cart API's
+export const addToCart = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}product/cart`,
+      data
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+export const loadMyCart = (params, callback) => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_API_URL}product/cart`,
+      {
+        params,
+      }
+    );
+    dispatch(cartReceived(res.data.cartProducts));
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+export const deleteCartProduct = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_API_URL}product/cart`,
+      {
+        data,
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+
+//  Reviews
+export const deleteReview = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_API_URL}product/delete-review`,
+      {
+        data,
+      }
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+export const addReview = (data, callback) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}product/add-review`,
+      data
+    );
+    callback(res);
+  } catch (err) {
+    callback(err.response);
+  }
+};
+
+export const { categoryReceived, setLoading, wishlistReceived, cartReceived } =
   miscSlice.actions;
 export default miscSlice.reducer;

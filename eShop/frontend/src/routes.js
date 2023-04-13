@@ -11,6 +11,7 @@ import UserDetails from "screens/admin/user/userDetails";
 //  Misc Routes
 import CategoryListing from "screens/admin/categories/categories";
 import Wishlist from "screens/wishlist";
+import CartListing from "screens/cart";
 
 //  Product Routes
 import ProductListing from "screens/admin/products/productListing";
@@ -28,6 +29,7 @@ function App() {
         {/* Misc Routes */}
         <Route exact path="/categories" element={<CategoryListing />} />
         <Route exact path="/wish-list" element={<Wishlist />} />
+        <Route exact path="/cart" element={<CartListing />} />
 
         {/* Products Routes */}
         <Route exact path="/products" element={<ProductListing />} />

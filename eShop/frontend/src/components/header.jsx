@@ -6,6 +6,10 @@ import { connect } from "react-redux";
 import { loadUser } from "../store/user";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import {
+  faCartShopping,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
 
 //  Components
 import RegisterModal from "./onboarding/registerModal";
@@ -43,10 +47,15 @@ function Header({ loadUser }) {
             <Nav.Link href="#features">Products</Nav.Link>
             <div className="d-flex align-items-center position-absolute nav-btn-container">
               <FontAwesomeIcon
-                className="heart-header hover mx-5"
+                className="heart-header hover "
                 icon={faHeart}
                 onClick={(e) => navigate("/wish-list")}
               />{" "}
+              <FontAwesomeIcon
+                className="heart-header hover mx-5"
+                icon={faShoppingCart}
+                onClick={(e) => navigate("/cart")}
+              />
               {!localStorage.getItem("x-auth-token") && (
                 <button className="btn btn-primary" onClick={toggleLogin}>
                   Login
