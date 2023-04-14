@@ -28,8 +28,15 @@ export default class App extends Component {
     newTaskList.splice(index, 1);
     this.setState({ taskList: newTaskList });
   };
-
+  handleDelete = (event) => {
+    event.preventDefault();
+    this.setState({
+      taskList: [...this.state.taskList, this.state.task],
+      task: "",
+    });
+  };
   render() {
+    console.log("Home rendered!!");
     return (
       <div className="container">
         <h2 className="main-wrapper">TODO</h2>
@@ -44,13 +51,7 @@ export default class App extends Component {
             value={this.state.task}
           />
           <Button
-            handleClick={(event) => {
-              event.preventDefault();
-              this.setState({
-                taskList: [...this.state.taskList, this.state.task],
-                task: "",
-              });
-            }}
+            handleClick={this.handleDelete}
             title="Add Task"
             disabled={!this.state.task}
           />

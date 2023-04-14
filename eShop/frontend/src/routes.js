@@ -15,6 +15,7 @@ import CartListing from "screens/cart";
 
 //  Product Routes
 import ProductListing from "screens/admin/products/productListing";
+import OrderListing from "screens/order";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
 
         {/* Products Routes */}
         <Route exact path="/products" element={<ProductListing />} />
+        <Route exact path="/order" element={<OrderListing />} />
       </Routes>
     </BrowserRouter>
   );

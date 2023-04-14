@@ -4,6 +4,7 @@ import React from "react";
 import deleteIcon from "../include/images/delete.png";
 
 export default function taskCard({ task, count, deleteTask }) {
+  console.log("task card rendered!!");
   return (
     <li
       className="d-flex justify-content-between"

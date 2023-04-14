@@ -45,7 +45,6 @@ export const loadProductByCategory = (params, callback) => async (dispatch) => {
       `${process.env.REACT_APP_API_URL}product/product-by-category`,
       { params }
     );
-    console.log("response:", res);
     dispatch(productReceived(res.data.Products));
     callback(res);
     dispatch(setLoading(false));

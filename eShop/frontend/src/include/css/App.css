@@ -61,3 +61,8 @@
   padding: 20px 10px;
   border-radius: 10px;
 }
+.tag {
+  padding: 10px 5px;
+  background: #d1ffd1;
+  border-radius: 5px;
+}

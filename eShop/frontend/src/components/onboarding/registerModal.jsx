@@ -97,7 +97,6 @@ function RegisterModal({ showModal, toggleModal, register, toggleLogin }) {
         toggleLogin();
         toggleModal();
       } else {
-        console.log("error:", res);
       }
     });
   };

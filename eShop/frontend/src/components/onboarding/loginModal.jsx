@@ -72,7 +72,7 @@ function LoginModal({ showModal, toggleModal, login, toggleRegister }) {
       }
     });
   };
-  console.log("data:", errors);
+  console.log("Login rendered!!");
   return (
     <Modal show={showModal} onHide={toggleModal} centered size="lg">
       <Modal.Header closeButton>

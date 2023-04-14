@@ -12,7 +12,6 @@ function CategoryGrid({ getMisc, loadCategories, loadProductByCategory }) {
   }, []);
 
   const filterProductByCategory = (id) => {
-    console.log("filter!!");
     loadProductByCategory({ catId: id }, () => {});
   };
 

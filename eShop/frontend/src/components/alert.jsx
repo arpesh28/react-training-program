@@ -1,16 +1,18 @@
-import React from "react";
+import React, { memo } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-export default function Alert({
+const Alert = ({
   showModal,
   toggleModal,
   message,
   confirmButtonName,
   handleSubmit,
   loading,
-}) {
+}) => {
+  console.log("Alert rendered!!");
+
   return (
     <Modal show={showModal} onHide={toggleModal} centered>
       <Modal.Header closeButton>
@@ -31,4 +33,5 @@ export default function Alert({
       </Modal.Footer>
     </Modal>
   );
-}
+};
+export default Alert;
